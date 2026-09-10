@@ -6,9 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "codexgram",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.burakorkmez.codexgram"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +18,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.burakorkmez.codexgram"
     },
     "web": {
       "output": "static",
@@ -31,6 +33,16 @@
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
+        }
+      ],
+      "expo-secure-store",
+      "@clerk/expo",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose a profile photo for Codexgram.",
+          "cameraPermission": false,
+          "microphonePermission": false
         }
       ]
     ],
