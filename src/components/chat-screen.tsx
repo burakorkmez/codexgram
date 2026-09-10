@@ -1,3 +1,4 @@
+import { randomUUID } from 'expo-crypto';
 import { Image, type ImageSource } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { StatusBar } from 'expo-status-bar';
@@ -34,8 +35,9 @@ export function ChatScreen({ onBack, messages, setMessages }: { onBack: () => vo
   const send = () => {
     if (!canSend) return;
     const time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    const id = randomUUID();
     shouldScroll.current = true;
-    setMessages(current => [...current, { id: `${Date.now()}`, text: draft.trim(), outgoing: true, time, image: attachment ? { uri: attachment } : undefined }]);
+    setMessages(current => [...current, { id, text: draft.trim(), outgoing: true, time, image: attachment ? { uri: attachment } : undefined }]);
     setDraft(''); setAttachment(undefined);
   };
   async function pickPhoto() {

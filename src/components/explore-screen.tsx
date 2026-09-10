@@ -34,7 +34,7 @@ export function ExploreTab() {
   const tileWidth = (width - fs(14) - fs(12)) / 3;
   const allPosts = [...posts.filter(post => post.id.startsWith('local-')), ...explorePosts];
   const needle = query.trim().toLowerCase().replace(/^#/, '');
-  const filtered = allPosts.filter(post => (topic === 'All' || post.tags.includes(topic.toLowerCase())) && `${post.name} ${post.title} ${post.tags.join(' ')}`.toLowerCase().includes(needle));
+  const filtered = allPosts.filter(post => (topic === 'All' || post.tags.includes(topic.toLowerCase())) && `${post.name} ${post.title} ${post.caption} ${post.tags.join(' ')}`.toLowerCase().includes(needle));
   const toggleFollow = (name: string) => setFollowed(current => current.includes(name) ? current.filter(value => value !== name) : [...current, name]);
   const toggleLike = (id: string) => setLiked(current => current.includes(id) ? current.filter(value => value !== id) : [...current, id]);
   const openPost = (post: Post) => { setSelected(post); setSheet('post'); };
