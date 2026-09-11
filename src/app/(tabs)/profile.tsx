@@ -1,1 +1,1 @@
-export { ProfileTab as default } from '@/components/profile-screen';
+export { OwnProfile as default } from '@/components/social/profile';

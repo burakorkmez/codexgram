@@ -1,1 +1,2 @@
-export { MessagesTab as default } from '@/components/tab-screens';
+import { MessagesTab } from '@/components/tab-screens';
+export default function MessagesPreview() { return <MessagesTab preview />; }

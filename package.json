@@ -5,6 +5,7 @@
   "dependencies": {
     "@clerk/expo": "^4.6.6",
     "@expo/ui": "~57.0.17",
+    "convex": "^1.45.0",
     "expo": "~57.0.21",
     "expo-apple-authentication": "~57.0.1",
     "expo-auth-session": "~57.0.11",
@@ -24,6 +25,7 @@
     "expo-status-bar": "~57.0.1",
     "expo-symbols": "~57.0.2",
     "expo-system-ui": "~57.0.3",
+    "expo-video": "~57.0.3",
     "expo-web-browser": "~57.0.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -36,8 +38,12 @@
     "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
+    "@edge-runtime/vm": "^5.0.0",
+    "@types/node": "^22.20.2",
     "@types/react": "~19.2.2",
-    "typescript": "~6.0.3"
+    "convex-test": "^0.0.57",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.0"
   },
   "scripts": {
     "start": "expo start",
@@ -45,7 +51,13 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "seed": "node scripts/seed-demo.mjs",
+    "start:dev": "expo start --dev-client",
+    "build:dev:ios": "npx eas-cli@latest build --platform ios --profile development",
+    "build:dev:android": "npx eas-cli@latest build --platform android --profile development"
   },
   "private": true
 }

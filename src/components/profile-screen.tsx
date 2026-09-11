@@ -52,7 +52,7 @@ export function ProfileTab() {
     <View collapsable={false} style={[styles.screen, { paddingTop: Math.max(40, insets.top - 9) }]}>
       <StatusBar style="dark" />
       <View style={[styles.header, { height: 52 * v, paddingHorizontal: fs(20), gap: fs(6) }]}>
-        <Image source={require('../../assets/images/codexgram-mark.png')} style={{ width: fs(28), height: fs(28) }} />
+        <Image source={require('../../assets/images/logo.png')} style={{ width: fs(28), height: fs(28) }} />
         <Text style={{ flex: 1, color: ink, fontSize: fs(21.5), fontWeight: '700', letterSpacing: -0.8 }}>Codexgram</Text>
         <Pressable accessibilityRole="button" accessibilityLabel="Search people" onPress={navigateExplore} style={styles.headerButton}><FeedIcon name="search" size={fs(22)} /></Pressable>
         <Pressable accessibilityRole="button" accessibilityLabel="Settings" onPress={() => setSheet('menu')} style={styles.headerButton}><FeedIcon name="settings" size={fs(23)} color={ink} /></Pressable>

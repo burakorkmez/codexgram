@@ -1,7 +1,9 @@
 import { Image } from 'expo-image';
 
-export type IconName = 'search' | 'plus' | 'heart' | 'comment' | 'send' | 'bookmark' | 'home' | 'explore' | 'profile' | 'close' | 'grid' | 'video' | 'tagged' | 'person-plus' | 'back' | 'camera' | 'bio' | 'link' | 'location' | 'sign-out' | 'settings' | 'phone' | 'video-call' | 'photo' | 'check' | 'double-check' | 'chat-send';
+export type IconName = 'compose' | 'info' | 'search' | 'plus' | 'heart' | 'comment' | 'send' | 'bookmark' | 'home' | 'explore' | 'profile' | 'close' | 'grid' | 'video' | 'tagged' | 'person-plus' | 'back' | 'camera' | 'bio' | 'link' | 'location' | 'sign-out' | 'settings' | 'phone' | 'video-call' | 'photo' | 'check' | 'double-check' | 'chat-send';
 const paths: Record<IconName, string> = {
+  compose: '<path d="M13 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-8M14 3l3-2 5 5-3 3-8 8-5 1 1-5 7-10ZM14 3l5 6"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.2"/>',
   search: '<circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/>',
   plus: '<path d="M12 4v16M4 12h16"/>',
   heart: '<path d="M20.8 4.6a5.6 5.6 0 0 0-8 .1L12 5.5l-.8-.8a5.6 5.6 0 0 0-8 7.9L12 21l8.8-8.4a5.6 5.6 0 0 0 0-8Z"/>',

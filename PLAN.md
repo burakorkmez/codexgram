@@ -1,6 +1,6 @@
 # Codexgram — Implementation Plan
 
-Status: planning complete; implementation has not started. Implement the steps below only when requested.
+Status: authentication and the main UI were already implemented. On September 11, 2026, Convex profiles/onboarding, media posts, likes, comments, follows, and live discovery were implemented. See `docs/social-features.md` for setup, verification, and remaining device acceptance checks. Private text messaging is now implemented; see `docs/chat-screen.md` for verification and remaining two-device acceptance checks; the original checklist below also tracks work outside this implementation.
 
 ## 1. Product and agreed scope
 
@@ -130,7 +130,7 @@ Empty Home offers discovery and post creation.
 - Show pending and failed sends; allow manual retry without duplicates.
 - Only participants can access a conversation.
 
-No self-chat, groups, attachments, inbox user search, unread badges, typing indicators, read receipts, or message editing/deletion.
+No self-chat, groups, live attachments, typing indicators, read receipts, or message editing/deletion. The supplied Messages reference adds inbox member search and an Unread filter to this scope.
 
 Fictional seed profiles cannot authenticate or reply; clearly explain this before presenting a misleading chat experience.
 
@@ -203,45 +203,45 @@ No separate REST server, billing service, analytics service, or video-processing
 
 ### Step 3 — Establish Convex and profiles
 
-- [ ] Configure Clerk authentication in Convex.
-- [ ] Add data definitions, indexes, and authorization helpers.
-- [ ] Implement idempotent profile creation and username onboarding.
-- [ ] Implement profile editing and retrieval.
+- [x] Configure Clerk authentication in Convex.
+- [x] Add data definitions, indexes, and authorization helpers.
+- [x] Implement idempotent profile creation and username onboarding.
+- [x] Implement profile editing and retrieval.
 
 **Complete when:** Two real users have distinct profiles and cannot edit each other's data.
 
 ### Step 4 — Build media and posts
 
-- [ ] Add library selection and media validation.
-- [ ] Implement upload progress, publication, retry, and abandonment behavior.
-- [ ] Implement post display, video previews, playback, and deletion.
-- [ ] Add storage cleanup.
+- [x] Add library selection and media validation.
+- [x] Implement upload progress, publication, retry, and abandonment behavior.
+- [x] Implement post display, video previews, playback, and deletion.
+- [x] Add storage cleanup.
 
 **Complete when:** Supported images/videos publish and play, and failed uploads never create visible incomplete posts.
 
 ### Step 5 — Build discovery and social interactions
 
-- [ ] Implement follow/unfollow and follower/following lists.
-- [ ] Implement Home, Explore, search, and profile grids.
-- [ ] Add likes, comments, and own-comment deletion.
-- [ ] Add pagination, empty states, and missing/deleted-content handling.
+- [x] Implement follow/unfollow and follower/following lists.
+- [x] Implement Home, Explore, search, and profile grids.
+- [x] Add likes, comments, and own-comment deletion.
+- [x] Add pagination, empty states, and missing/deleted-content handling.
 
 **Complete when:** Two accounts can discover each other and complete every social interaction.
 
 ### Step 6 — Build messaging
 
-- [ ] Create/reuse conversations from profiles.
-- [ ] Implement ordered chat lists and paginated live conversations.
-- [ ] Add pending/failed sends and duplicate-safe retries.
-- [ ] Verify participant-only access.
+- [x] Create/reuse conversations from profiles.
+- [x] Implement ordered chat lists and paginated live conversations.
+- [x] Add pending/failed sends and duplicate-safe retries.
+- [x] Verify participant-only access.
 
 **Complete when:** Two devices exchange messages live without duplicate conversations or retry-generated messages.
 
 ### Step 7 — Seed and polish
 
-- [ ] Add an idempotent development-only seed routine.
+- [x] Add an idempotent development-only seed routine.
 - [ ] Source licensed sample imagery and a short video for a few fictional profiles.
-- [ ] Clearly mark fictional profiles and their messaging limitations.
+- [x] Clearly mark fictional profiles and their messaging limitations.
 - [ ] Apply the supplied design reference when available.
 - [ ] Verify keyboard behavior, accessibility labels, contrast, and touch targets.
 
@@ -250,7 +250,7 @@ No separate REST server, billing service, analytics service, or video-processing
 ### Step 8 — Validate and deliver
 
 - [ ] Run type checking and applicable lint checks.
-- [ ] Run focused backend permission and invariant tests.
+- [x] Run focused backend permission and invariant tests.
 - [ ] Complete the two-account iPhone acceptance walkthrough.
 - [ ] Verify cancellation, connection loss, retries, app restart, and deletion.
 - [ ] Prepare an internal development build for registered tester devices.

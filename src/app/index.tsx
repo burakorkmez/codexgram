@@ -70,7 +70,7 @@ export default function Index() {
             <Text style={styles.dots}>•••</Text>
           </Pressable>
           <Image
-            source={require("../../assets/images/codexgram-mark.png")}
+            source={require("../../assets/images/logo.png")}
             style={styles.logo}
             contentFit="contain"
             accessibilityLabel="Codexgram logo"

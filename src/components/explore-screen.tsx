@@ -44,7 +44,7 @@ export function ExploreTab() {
     <View style={[styles.screen, { paddingTop: Math.max(40, insets.top - 14) }]}>
       <StatusBar style="dark" />
       <View style={{ height: 49 * v, paddingHorizontal: fs(14), flexDirection: 'row', alignItems: 'center', gap: fs(9) }}>
-        <Image source={require('../../assets/images/codexgram-mark.png')} style={{ width: fs(35), height: fs(35) }} />
+        <Image source={require('../../assets/images/logo.png')} style={{ width: fs(35), height: fs(35) }} />
         <Text style={{ flex: 1, color: ink, fontSize: fs(23), fontWeight: '700', letterSpacing: -0.8 }}>Codexgram</Text>
         <Pressable accessibilityRole="button" accessibilityLabel="Search Explore" onPress={() => { listRef.current?.scrollToOffset({ offset: 0, animated: true }); searchRef.current?.focus(); }} style={[styles.headerButton, { width: fs(34), height: fs(34), borderRadius: fs(20) }]}><FeedIcon name="search" size={fs(22)} /></Pressable>
         <Pressable accessibilityRole="button" accessibilityLabel="Create a post" onPress={() => { setCaption(''); setSheet('compose'); }} style={[styles.headerButton, { width: fs(34), height: fs(34), borderRadius: fs(20), backgroundColor: '#EDF3FC' }]}><FeedIcon name="plus" size={fs(23)} color={blue} /></Pressable>

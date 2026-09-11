@@ -1,1 +1,1 @@
-export { HomeTab as default } from '@/components/home-tab';
+export { LiveHome as default } from '@/components/social/feed';

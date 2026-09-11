@@ -81,7 +81,7 @@ export function HomeFeed({ userName, onExplore }: Props) {
     <View collapsable={false} style={[styles.screen, { paddingTop: Math.max(40, insets.top - 16) }]}>
       <StatusBar style="dark" />
       <View style={[styles.header, { height: 54 * v, paddingHorizontal: fs(14), gap: fs(10) }]}>
-        <Image source={require('../../assets/images/codexgram-mark.png')} style={{ width: fs(38), height: fs(38) }} />
+        <Image source={require('../../assets/images/logo.png')} style={{ width: fs(38), height: fs(38) }} />
         <Text style={{ flex: 1, fontSize: fs(23), fontWeight: '700', letterSpacing: -1, color: '#070D1C' }}>Codexgram</Text>
         {roundButton('search', 'Search people and posts', onExplore)}
         {roundButton('plus', 'Create a post', () => open({ kind: 'compose' }), true)}
