@@ -1,13 +1,35 @@
-# Home screen
+# Home and stories
 
-The signed-in `/(tabs)/home` route (URL `/home`) renders `HomeFeed`. It uses local fictional fixture profiles and posts; the existing Clerk guard remains in place. Sign-out is available through Profile.
+Home's signed-in implementation is `src/components/social/feed.tsx`, with the Home variant of `PostCard`, `HomeHeader`, `HomeNavigation`, and `Stories`. The local design preview remains in `src/components/home-feed.tsx` with matching proportions. The existing `assets/images/logo.png` and app icon configuration were preserved.
 
-A development-only `/design-preview` route renders the same component without account data. Both the route guard and the screen reject access in production. This route does not bypass authentication for `/home`.
+Three visual refinement rounds compared simulator captures with `design/home-screen-ref.png`. The comparison removes the outer phone mockup using crop (150, 94, 792, 1600) and normalizes the simulator to the resulting screen size. Final screenshots are `artifacts/home/final.png` (fixed preview) and `live-final.png` (signed-in data), with matching `comparison-final.png` and `comparison-live-final.png`.
 
-The feed includes horizontally scrolling story previews, an image carousel, local like/save toggles, local comments, hashtag search, the system share sheet, and a local sample-post composer. Feed state is shared above the native tab routes and survives tab switches; it resets when the tab navigator remounts. This is not a backend integration. Home, Messages, Explore, and Profile are separate Expo Router NativeTabs routes. Messages has an empty state, Explore searches demo posts, and Profile displays account details, saved posts, and sign-out. The Profile reference is implemented; Messages and Explore remain basic screens.
+Matched: header, story-row placement, compact post headers, landscape media proportions, rounded white cards, caption/tag treatment, action row. Bottom navigation always uses Expo Router native tabs. Live posts without hashtags or a second caption line retain the card's minimum body height; no sample text is inserted. The preview's carousel badge belongs to its sample carousel; live single-image posts do not show a fabricated carousel count.
 
-The photo and portrait PNGs in `assets/images/feed` were extracted from the user-provided `design/home-screen-ref.png`. Text, cards, buttons, navigation, and icons are native UI, not a screenshot overlay. The lake image includes a baked counter, covered by the live counter in the matching position. The carousel reuses supplied demo landscape assets.
+Remaining differences: the logo intentionally stays as requested; system status area/home indicator and some glyph rendering differ; photos, names, captions and counts reflect available data. The real story row shows its empty state until someone publishes a story; preview stories are local illustrative samples.
 
-Comparison screenshots are in `artifacts/home`. The reference's device frame is excluded and its screen is normalized to the simulator viewport for comparison. The reference and iPhone 17 Pro Max have different screen proportions and system chrome, so status-bar and device-frame pixels are not an exact-match target.
+## Stories
 
-Native tabs use SF Symbols on iOS and Material icons on Android. Automatic trigger insets are disabled; the vertical lists explicitly use automatic content inset adjustment. Screens extend behind the transparent native tab bar rather than reserving an opaque bottom safe-area strip. The development preview uses the same native layout under `/design-preview/home`.
+- Tap **Your story**, take a photo with Camera or choose one from Library, then Publish. Stories have no captions.
+- Post creation offers the same Camera and Library options and retains its caption field. Camera capture is photo-only; the post library still accepts videos.
+- Camera access is requested on demand, with a settings link if permission is blocked. The iOS simulator shows an unavailable-camera message; capture requires a physical device.
+- Photos use the existing authenticated upload endpoint and its MIME/signature/10 MB checks.
+- Stories are visible to signed-in members, grouped by author in Home, newest authors first. The rail queries the latest 100 unexpired stories.
+- The full-screen viewer advances after five seconds once the photo loads. Tap sides to navigate; hold or use Pause to pause. Playback pauses in the background. Close exits; authors can delete their own stories.
+- Viewed rings are tracked for the current Home component session, not synchronized between devices.
+- Scheduled mutations remove story media and upload records after 24 hours. Client expiry refreshes every 30 seconds and on foreground; HTTP media access also checks expiry.
+- Publication retries reuse the upload's story ID rather than publishing duplicates. Deleted/expired stories cannot be republished from the same completed upload.
+
+Backend changes were deployed to **development savory-raven-325**. No story fixtures were published to the live database.
+
+## Validation
+
+`npm run typecheck`, `npm test` (23 passing tests), and `git diff --check` pass. New `convex/stories.test.ts` cases cover authenticated upload/viewing, cross-account visibility, rejected unauthorized publication/deletion, wrong upload purpose, caption limits, retry-safe publication, video rejection, expiry and storage/upload cleanup. Existing social, messaging and seed tests pass.
+
+The simulator verified the Home layout, live empty story rail, composer and native photo-library opening. End-to-end device publication and the full-screen viewer were not verified: the computer-use interface exposed no photo elements and coordinate selection repeatedly failed with `noWindowsAvailable`. The API upload-to-publication path was tested through convex-test's HTTP interface instead. This is a remaining manual device QA check, not a claimed passing UI test.
+
+Story publication sends an empty caption for compatibility with the existing backend contract, and the viewer never renders caption text. Camera permission is configured in `app.json`; installed development clients must be rebuilt to include it.
+
+Follow-up checks: simulator accessibility verified Camera and Library controls in both composers, no caption input in stories, and the retained 2,200-character post caption. Camera on the iOS simulator produces the expected physical-device fallback. Generated iOS Info.plist includes NSCameraUsageDescription.
+
+The updated iOS development client was rebuilt and installed successfully; its installed Info.plist was checked for the camera permission description. TypeScript and whitespace checks pass. Physical camera capture is not verified in the simulator.

@@ -2,7 +2,7 @@ import { useClerk } from '@clerk/expo';
 import { useMutation, usePaginatedQuery, useQuery } from 'convex/react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Alert, FlatList, Modal, Pressable, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, Alert, FlatList, Modal, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBackendToken, useProfile } from '@/context/social-context';
 import { api, errorMessage, type Id, type SocialProfile } from '@/lib/social';
@@ -11,33 +11,50 @@ import { sendUpload } from '@/lib/upload';
 import { EditProfileScreen } from '../edit-profile-screen';
 import { Avatar, PostMedia, useMediaSource } from './media';
 import { FollowButton } from './post-card';
-import { Header, ConnectionStatus, LoadMore, ui } from './ui';
+import { ConnectionStatus, LoadMore, ui } from './ui';
+import { ProfileHeader, ProfileSummary, ProfileGalleryTabs, useProfileScale, type ProfilePanel } from '../profile-layout';
+import { FeedIcon } from '../feed-icon';
+import { SettingsScreen } from '../settings-screen';
 
 export function OwnProfile() { const me = useProfile(); return <MemberProfile id={me._id} />; }
 export function MemberRoute() { const { id } = useLocalSearchParams<{ id: Id<'profiles'> }>(); return <MemberProfile id={id} back />; }
 function MemberProfile({ id, back = false }: { id: Id<'profiles'>; back?: boolean }) {
   const profile = useQuery(api.profiles.get, { id }); const posts = usePaginatedQuery(api.posts.list, { feed: 'profile', profileId: id }, { initialNumItems: 21 });
   const startChat = useMutation(api.messaging.start);
-  const router = useRouter(); const { signOut } = useClerk(); const insets = useSafeAreaInsets(); const { width } = useWindowDimensions();
-  const [sheet, setSheet] = useState<'followers' | 'following' | 'edit' | null>(null); const [signingOut, setSigningOut] = useState(false);
-  return <View style={[ui.screen, { paddingTop: insets.top }]}><Header back={back} /><ConnectionStatus />
+  const deleteAccount = useMutation(api.accounts.requestDeletion);
+  const router = useRouter(); const { signOut } = useClerk(); const { s, v, width, insets } = useProfileScale();
+  const [sheet, setSheet] = useState<'followers' | 'following' | 'edit' | 'settings' | null>(null);
+  const [panel, setPanel] = useState<ProfilePanel>('posts');
+  const gallery = panel === 'posts' ? posts.results : panel === 'videos' ? posts.results.filter(post => post.kind === 'video') : [];
+  const hasPostFeed = panel === 'posts' || panel === 'videos';
+  if (sheet === 'settings') return <SettingsScreen accountName={profile?.username ?? 'Your account'} onClose={() => setSheet(null)} onEdit={() => setSheet('edit')} onSaved={() => { setPanel('saved'); setSheet(null); }} onSignOut={signOut} onDelete={() => deleteAccount({})} />;
+  return <View style={[ui.screen, { paddingTop: Math.max(40, insets.top - 9) }]}>
+    <ProfileHeader back={back} onSettings={() => setSheet('settings')} /><ConnectionStatus />
     {!profile ? profile === undefined ? <ActivityIndicator color="#087EFF" /> : <View style={ui.center}><Text style={ui.title}>Profile unavailable</Text></View> : <>
-      <FlatList data={posts.results} numColumns={3} keyExtractor={item => item._id} columnWrapperStyle={{ gap: 3, paddingHorizontal: 8 }} ListHeaderComponent={<View style={{ padding: 20, gap: 16 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}><Avatar profile={profile} size={92} /><View style={{ flex: 1 }}><Text style={ui.title}>{profile.username}</Text><Text style={[ui.text, { marginTop: 6 }]}>{profile.name}</Text></View></View>
-        {profile.isDemo && <Text style={[ui.muted, { backgroundColor: '#EDF4FF', padding: 12, borderRadius: 12 }]}>Fictional demo profile · This member cannot sign in or reply to messages.</Text>}
-        {!!profile.bio && <Text style={ui.text}>{profile.bio}</Text>}{!!profile.location && <Text style={ui.muted}>{profile.location}</Text>}{!!profile.website && <Text style={ui.link} selectable>{profile.website}</Text>}
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 8 }}><View style={{ alignItems: 'center' }}><Text style={ui.title}>{profile.postsCount}</Text><Text style={ui.muted}>Posts</Text></View>{(['followers', 'following'] as const).map(kind => <Pressable key={kind} accessibilityRole="button" onPress={() => setSheet(kind)} style={{ alignItems: 'center' }}><Text style={ui.title}>{kind === 'followers' ? profile.followersCount : profile.followingCount}</Text><Text style={ui.muted}>{kind === 'followers' ? 'Followers' : 'Following'}</Text></Pressable>)}</View>
-        {profile.isOwn ? <View style={{ flexDirection: 'row', gap: 12 }}><Pressable style={[ui.button, { flex: 1 }]} onPress={() => setSheet('edit')}><Text style={ui.buttonText}>Edit profile</Text></Pressable><Pressable disabled={signingOut} onPress={() => { setSigningOut(true); void signOut().catch(() => { Alert.alert('Unable to sign out', 'Please try again.'); setSigningOut(false); }); }} style={[ui.button, { backgroundColor: '#EFF3F8' }]}><Text style={ui.link}>{signingOut ? 'Signing out…' : 'Sign out'}</Text></Pressable></View>
-          : <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}><FollowButton profile={profile} />{!profile.isDemo && <Pressable style={[ui.button, { flex: 1 }]} onPress={async () => { try { const chatId = await startChat({ profileId: profile._id }); router.push({ pathname: '/chat/[id]', params: { id: chatId } }); } catch (e) { Alert.alert('Could not open chat', errorMessage(e)); } }}><Text style={ui.buttonText}>Message</Text></Pressable>}</View>}
-      </View>}
-        renderItem={({ item }) => <Pressable accessibilityRole="button" accessibilityLabel={`Open post${item.caption ? `: ${item.caption}` : ''}`} onPress={() => router.push({ pathname: '/post/[id]', params: { id: item._id } })} style={{ width: (width - 22) / 3, marginBottom: 4 }}><View pointerEvents="none"><PostMedia post={item} thumbnail /></View></Pressable>}
-        onEndReached={() => { if (posts.status === 'CanLoadMore') posts.loadMore(21); }} ListEmptyComponent={posts.status !== 'LoadingFirstPage' ? <Text style={[ui.muted, { padding: 30, textAlign: 'center' }]}>No posts yet.</Text> : null} ListFooterComponent={<LoadMore status={posts.status} loadMore={posts.loadMore} />} />
+      <FlatList data={gallery} numColumns={3} keyExtractor={item => item._id} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 100 }} columnWrapperStyle={{ gap: 4 * s, paddingHorizontal: 6 * s }} ListHeaderComponent={<>
+        <ProfileSummary avatar={<Avatar profile={profile} size={108 * s} />} username={profile.username} name={profile.name} bio={profile.bio}
+          onEdit={profile.isOwn ? () => setSheet('edit') : undefined} onDiscover={() => router.navigate('/explore')}
+          stats={[
+            { label: 'Posts', count: profile.postsCount, onPress: () => setPanel('posts') },
+            { label: 'Followers', count: profile.followersCount, onPress: () => setSheet('followers') },
+            { label: 'Following', count: profile.followingCount, onPress: () => setSheet('following') },
+          ]}>
+          {!profile.isOwn && <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 16 * v }}><FollowButton profile={profile} />{!profile.isDemo && <Pressable accessibilityRole="button" style={[ui.button, { flex: 1 }]} onPress={async () => { try { const chatId = await startChat({ profileId: profile._id }); router.push({ pathname: '/chat/[id]', params: { id: chatId } }); } catch (e) { Alert.alert('Could not open chat', errorMessage(e)); } }}><Text style={ui.buttonText}>Message</Text></Pressable>}</View>}
+        </ProfileSummary>
+        <ProfileGalleryTabs panel={panel} onChange={setPanel} />
+        <View style={{ height: 4 * v }} />
+      </>}
+        renderItem={({ item }) => <Pressable accessibilityRole="button" accessibilityLabel={`Open post${item.caption ? `: ${item.caption}` : ''}`} onPress={() => router.push({ pathname: '/post/[id]', params: { id: item._id } })} style={{ width: (width - 20 * s) / 3, marginBottom: 4 * s, borderRadius: 7 * s, overflow: 'hidden' }}><View pointerEvents="none"><PostMedia post={item} thumbnail aspectRatio={1 / 0.925} /></View></Pressable>}
+        onEndReached={() => { if (hasPostFeed && posts.status === 'CanLoadMore') posts.loadMore(21); }}
+        ListEmptyComponent={(!hasPostFeed || posts.status !== 'LoadingFirstPage') ? <View style={{ alignItems: 'center', padding: 38, gap: 16 }}><FeedIcon name={panel === 'posts' ? 'grid' : panel === 'videos' ? 'video' : panel === 'saved' ? 'bookmark' : 'tagged'} size={36} color="#7E88A2" /><Text style={[ui.muted, { textAlign: 'center' }]}>{panel === 'saved' ? 'Saved posts gallery is not available yet.' : panel === 'tagged' ? 'Tagged posts are not available yet.' : panel === 'videos' ? 'No videos to show.' : 'No posts yet. Your moments will appear here.'}</Text></View> : null}
+        ListFooterComponent={<>{hasPostFeed && <LoadMore status={posts.status} loadMore={posts.loadMore} />}{profile.isDemo && <Text style={[ui.muted, { padding: 20, fontSize: 11, textAlign: 'center' }]}>Fictional demo profile · This member cannot sign in or reply to messages.</Text>}</>} />
       <Modal visible={sheet !== null} animationType="slide" presentationStyle="fullScreen" onRequestClose={() => { if (sheet !== 'edit') setSheet(null); }}>
         {sheet === 'edit' ? <LiveEdit profile={profile} close={() => setSheet(null)} /> : sheet && <Connections profileId={id} kind={sheet} close={() => setSheet(null)} />}
       </Modal>
     </>}
   </View>;
 }
+
 function Connections({ profileId, kind, close }: { profileId: Id<'profiles'>; kind: 'followers' | 'following'; close: () => void }) {
   const result = usePaginatedQuery(api.social.connections, { profileId, kind }, { initialNumItems: 20 }); const router = useRouter(); const insets = useSafeAreaInsets();
   return <View style={[ui.screen, { paddingTop: insets.top }]}><View style={ui.header}><Text style={[ui.title, { flex: 1 }]}>{kind === 'followers' ? 'Followers' : 'Following'}</Text><Pressable onPress={close} style={{ padding: 10 }}><Text style={ui.link}>Done</Text></Pressable></View><FlatList data={result.results} keyExtractor={item => item._id} renderItem={({ item }) => <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}><Pressable onPress={() => { close(); router.push({ pathname: '/member/[id]', params: { id: item._id } }); }}><Avatar profile={item} size={48} /></Pressable><Pressable style={{ flex: 1 }} onPress={() => { close(); router.push({ pathname: '/member/[id]', params: { id: item._id } }); }}><Text style={ui.text}>{item.username}</Text><Text style={ui.muted}>{item.name}</Text></Pressable><FollowButton profile={item} /></View>} ListEmptyComponent={result.status !== 'LoadingFirstPage' ? <Text style={[ui.muted, { padding: 24 }]}>No {kind} yet.</Text> : null} ListFooterComponent={<LoadMore status={result.status} loadMore={result.loadMore} />} /></View>;

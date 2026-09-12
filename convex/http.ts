@@ -49,8 +49,8 @@ http.route({ path: '/upload', method: 'POST', handler: httpAction(async (ctx, re
 }) });
 http.route({ path: '/media', method: 'GET', handler: httpAction(async (ctx, req) => {
   const identity = await ctx.auth.getUserIdentity(); if (!identity) return response('Sign in required.', 401);
-  const url = new URL(req.url); const kind = url.searchParams.get('kind') === 'avatar' ? 'avatar' : 'post';
-  const storageId = await ctx.runQuery(internal.uploads.media, { id: url.searchParams.get('id') ?? '', kind, tokenIdentifier: identity.tokenIdentifier });
+  const url = new URL(req.url); const kind = url.searchParams.get('kind') === 'avatar' ? 'avatar' : url.searchParams.get('kind') === 'story' ? 'story' : 'post';
+  const storageId = await ctx.runQuery(internal.uploads.media, { id: url.searchParams.get('id') ?? '', kind, now: Date.now(), tokenIdentifier: identity.tokenIdentifier });
   if (!storageId) return response('Media unavailable.', 404);
   const blob = await ctx.storage.get(storageId); if (!blob) return response('Media unavailable.', 404);
   const headers = { ...cors, 'Content-Type': blob.type, 'Accept-Ranges': 'bytes', 'Cache-Control': 'private, no-store' };

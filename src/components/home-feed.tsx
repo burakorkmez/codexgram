@@ -16,8 +16,8 @@ export function HomeFeed({ userName, onExplore }: Props) {
   const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const s = width / 390;
-  const storyWidth = (width - 26 * s) / 5;
-  const v = Math.max(0.85, (height - insets.top - Math.min(insets.bottom, 34)) / 850);
+  const storyWidth = 68 * s;
+  const v = height / 916;
   const { posts, setPosts, unliked, setUnliked, saved, setSaved, comments, setComments } = useFeed();
   const [sheet, setSheet] = useState<Sheet>(null);
   const [input, setInput] = useState('');
@@ -43,7 +43,7 @@ export function HomeFeed({ userName, onExplore }: Props) {
     const cardWidth = width - fs(26);
     return (
       <View style={[styles.card, { marginHorizontal: fs(8), marginBottom: 8 * v, borderRadius: fs(16), paddingHorizontal: fs(5), paddingBottom: 4 * v }]}>
-        <View style={[styles.postHeader, { height: (post.compact ? 53 : 49) * v, paddingHorizontal: fs(4) }]}>
+        <View style={[styles.postHeader, { height: (50) * v, paddingHorizontal: fs(4) }]}>
           <Pressable accessibilityLabel={`View ${post.name}, fictional demo profile`} onPress={() => open({ kind: 'story', name: post.name, image: post.avatar })}>
             <Image source={post.avatar} style={{ width: fs(39), height: fs(39), borderRadius: fs(22) }} />
           </Pressable>
@@ -53,9 +53,9 @@ export function HomeFeed({ userName, onExplore }: Props) {
           </View>
           <Pressable accessibilityRole="button" accessibilityLabel={`More options for ${post.name}'s post`} hitSlop={10} onPress={() => open({ kind: 'menu', post })} style={{ padding: fs(6) }}><Text style={{ fontSize: fs(15), letterSpacing: 1.4, color: '#61708B' }}>•••</Text></Pressable>
         </View>
-        <View style={{ borderRadius: fs(12), overflow: 'hidden', height: (post.compact ? 138 : 180) * v }}>
+        <View style={{ borderRadius: fs(12), overflow: 'hidden', height: (post.compact ? 132 : 174) * v }}>
           {post.carousel ? <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} onMomentumScrollEnd={event => setPage(current => ({ ...current, [post.id]: Math.round(event.nativeEvent.contentOffset.x / cardWidth) }))}>
-            {[media.lake, media.casey, media.lake].map((photo, index) => <Image key={index} source={photo} contentFit="fill" style={{ width: cardWidth, height: 180 * v }} accessibilityLabel={`Demo mountain landscape ${index + 1}`} />)}
+            {[media.lake, media.casey, media.lake].map((photo, index) => <Image key={index} source={photo} contentFit="fill" style={{ width: cardWidth, height: 174 * v }} accessibilityLabel={`Demo mountain landscape ${index + 1}`} />)}
           </ScrollView> : <Image source={post.photo} contentFit="fill" style={StyleSheet.absoluteFill} accessibilityLabel={post.title} />}
           {post.carousel && <View pointerEvents="none" style={[styles.pageBadge, { top: 8 * v, right: fs(8), width: fs(34), height: 23 * v, alignItems: 'center', justifyContent: 'center' }]}><Text style={{ color: 'white', fontSize: fs(10) }}>{(page[post.id] ?? 0) + 1}/3</Text></View>}
         </View>
@@ -78,16 +78,16 @@ export function HomeFeed({ userName, onExplore }: Props) {
   }
 
   return (
-    <View collapsable={false} style={[styles.screen, { paddingTop: Math.max(40, insets.top - 16) }]}>
+    <View collapsable={false} style={[styles.screen, { paddingTop: Math.max(40 * s, insets.top - 15 * s) }]}>
       <StatusBar style="dark" />
-      <View style={[styles.header, { height: 54 * v, paddingHorizontal: fs(14), gap: fs(10) }]}>
+      <View style={[styles.header, { height: 50 * v, paddingHorizontal: fs(14), gap: fs(10) }]}>
         <Image source={require('../../assets/images/logo.png')} style={{ width: fs(38), height: fs(38) }} />
         <Text style={{ flex: 1, fontSize: fs(23), fontWeight: '700', letterSpacing: -1, color: '#070D1C' }}>Codexgram</Text>
         {roundButton('search', 'Search people and posts', onExplore)}
         {roundButton('plus', 'Create a post', () => open({ kind: 'compose' }), true)}
       </View>
-      <FlatList contentInsetAdjustmentBehavior="automatic" data={posts} keyExtractor={post => post.id} renderItem={renderPost} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 12 }} ListHeaderComponent={
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={storyWidth} decelerationRate="fast" style={{ marginHorizontal: fs(13), overflow: 'hidden' }} contentContainerStyle={{ paddingTop: 6 * v, paddingBottom: 9 * v }}>
+      <FlatList contentInsetAdjustmentBehavior="never" data={posts} keyExtractor={post => post.id} renderItem={renderPost} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 100 }} ListHeaderComponent={
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} snapToInterval={storyWidth} decelerationRate="fast" style={{ marginHorizontal: fs(4), overflow: 'hidden' }} contentContainerStyle={{ paddingTop: 6 * v, paddingBottom: 13 * v }}>
           <Pressable accessibilityRole="button" accessibilityLabel="Your story" onPress={() => open({ kind: 'story', name: 'Your story' })} style={[styles.story, { width: storyWidth }]}>
             <View style={{ width: fs(50), height: fs(50), borderRadius: fs(27), backgroundColor: '#EAF2FF', alignItems: 'center', justifyContent: 'center', marginBottom: 5 * v }}><FeedIcon name="plus" color={colors.blue} size={fs(23)} /></View>
             <Text style={{ fontSize: fs(9.5), color: colors.muted }}>Your story</Text>
@@ -98,6 +98,7 @@ export function HomeFeed({ userName, onExplore }: Props) {
           </Pressable>)}
         </ScrollView>
       } ListFooterComponent={<Text style={styles.demoNote}>Demo feed · fictional profiles and sample posts</Text>} />
+
       <Modal visible={!!sheet} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setSheet(null)}>
         <KeyboardAvoidingView style={styles.sheet} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
           <View style={styles.sheetHeader}><Text style={styles.sheetTitle}>{sheet?.kind === 'search' ? 'Explore' : sheet?.kind === 'compose' ? 'Create a demo post' : sheet?.kind === 'comments' ? 'Comments' : sheet?.name ?? 'Post options'}</Text><Pressable accessibilityRole="button" accessibilityLabel="Close" onPress={() => setSheet(null)} style={{ padding: 10 }}><FeedIcon name="close" /></Pressable></View>

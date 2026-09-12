@@ -1,7 +1,16 @@
 import { Image } from 'expo-image';
 
-export type IconName = 'compose' | 'info' | 'search' | 'plus' | 'heart' | 'comment' | 'send' | 'bookmark' | 'home' | 'explore' | 'profile' | 'close' | 'grid' | 'video' | 'tagged' | 'person-plus' | 'back' | 'camera' | 'bio' | 'link' | 'location' | 'sign-out' | 'settings' | 'phone' | 'video-call' | 'photo' | 'check' | 'double-check' | 'chat-send';
+export type IconName = 'bell' | 'lock' | 'blocked' | 'help' | 'support' | 'document' | 'chevron-right' | 'trash' | 'compose' | 'info' | 'search' | 'plus' | 'heart' | 'comment' | 'send' | 'bookmark' | 'home' | 'explore' | 'profile' | 'close' | 'grid' | 'video' | 'tagged' | 'person-plus' | 'back' | 'camera' | 'bio' | 'link' | 'location' | 'sign-out' | 'settings' | 'phone' | 'video-call' | 'photo' | 'check' | 'double-check' | 'chat-send';
 const paths: Record<IconName, string> = {
+  bell: '<path d="M4 18h16l-2-3V9a6 6 0 0 0-12 0v6l-2 3ZM10 21a3 3 0 0 0 4 0"/>',
+  lock: '<rect x="4" y="10" width="16" height="12" rx="2"/><path d="M7 10V6a5 5 0 0 1 10 0v4M12 15v2"/>',
+  blocked: '<circle cx="12" cy="12" r="10"/><path d="m5 5 14 14"/>',
+  help: '<circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 1 1 4 3c-1 .5-1 1-1 2M12 17v.2"/>',
+  support: '<path d="M3 22V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a4 4 0 0 1-4 4H7l-4 4Z"/>',
+  document: '<path d="M14 2H5a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8l-6-6ZM14 2v6h6M8 11h3M8 15h8M8 18h8"/>',
+  'chevron-right': '<path d="m9 4 7 8-7 8"/>',
+  trash: '<path d="M3 5h18M9 5V2h6v3M5 5l1 17h12l1-17M10 9v9M14 9v9"/>',
+
   compose: '<path d="M13 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-8M14 3l3-2 5 5-3 3-8 8-5 1 1-5 7-10ZM14 3l5 6"/>',
   info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.2"/>',
   search: '<circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/>',

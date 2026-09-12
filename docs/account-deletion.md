@@ -1,0 +1,11 @@
+# Account deletion
+
+Settings → Delete Account opens a native confirmation explaining that deletion is permanent and includes conversations for both participants. Cancel makes no request. Preview profiles cannot delete a real account. The button disables duplicate submissions and reports request errors.
+
+`accounts.requestDeletion` derives the owner from the authenticated Convex identity; it accepts no user/profile ID. It creates an idempotent deletion job, marks the profile unavailable for new writes, and schedules Clerk account deletion using the server-only `CLERK_SECRET_KEY`. This key must belong to the same Clerk instance as `CLERK_JWT_ISSUER_DOMAIN`.
+
+The Clerk DELETE request is retried after network errors, HTTP 429, or server errors. A 404 is treated as an already-completed deletion. Other failures stop before removing app data and expose a retry screen. A scheduled watchdog recovers interrupted workers. Cleanup only begins after Clerk confirms deletion; the client then signs out, and cleanup continues without it.
+
+Cleanup uses indexed batches to remove posts, stories, media/uploads/avatar, comments, likes, bookmarks, comment likes, follows, and conversations/messages/inbox entries for both participants. It repairs surviving accounts' follow counts and surviving posts' interaction counts. File deletion tolerates already-removed files. Existing post/comment cleanup jobs remove dependent interactions. A minimal private identity tombstone prevents unexpired JWTs from recreating a deleted account; the Clerk user ID field is cleared after Clerk deletion. No passwords, email addresses, or profile content are retained in the tombstone.
+
+Validation: all 28 tests pass, including five deletion tests with mocked Clerk HTTP. Coverage includes unauthenticated/spoofed requests, retries, missing configuration, blocked writes/uploads, batches spanning more than 25 records, storage removal, counter repair, and preservation of the other account. TypeScript and whitespace checks pass. Deployed to `dev:savory-raven-325`. Simulator confirmation and Cancel were exercised; no real Clerk account was deleted during verification. Screenshot: `artifacts/settings/delete-confirmation.png`.

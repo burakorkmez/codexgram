@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as accounts from "../accounts.js";
 import type * as http from "../http.js";
 import type * as lib_auth from "../lib/auth.js";
 import type * as lib_seed_data from "../lib/seed_data.js";
@@ -19,6 +20,7 @@ import type * as posts from "../posts.js";
 import type * as profiles from "../profiles.js";
 import type * as seed from "../seed.js";
 import type * as social from "../social.js";
+import type * as stories from "../stories.js";
 import type * as uploads from "../uploads.js";
 
 import type {
@@ -28,6 +30,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  accounts: typeof accounts;
   http: typeof http;
   "lib/auth": typeof lib_auth;
   "lib/seed_data": typeof lib_seed_data;
@@ -39,6 +42,7 @@ declare const fullApi: ApiFromModules<{
   profiles: typeof profiles;
   seed: typeof seed;
   social: typeof social;
+  stories: typeof stories;
   uploads: typeof uploads;
 }>;
 

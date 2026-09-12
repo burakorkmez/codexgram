@@ -3,3 +3,18 @@
 [2026-09-10T15:59:49.402Z] INFO  [StorageFactory] [trace=fbaf8eee31fe2afdc88ee00d04c06580] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
 [2026-09-10T15:59:49.433Z] INFO  [StorageFactory] [trace=fbaf8eee31fe2afdc88ee00d04c06580] Storage mode: dual-write (primary=orphan, shadow=folder)
 [2026-09-10T15:59:49.436Z] INFO  [McpServer] [trace=fbaf8eee31fe2afdc88ee00d04c06580] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-11T06:27:47.824Z] INFO  [StorageFactory] [trace=608d50675d7f455857422d8f00e1bb42] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-11T06:27:47.861Z] INFO  [StorageFactory] [trace=608d50675d7f455857422d8f00e1bb42] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-11T06:27:47.864Z] INFO  [McpServer] [trace=608d50675d7f455857422d8f00e1bb42] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-11T06:57:21.198Z] INFO  [StorageFactory] [trace=83c2ad9c0cbf6b3e8b62693655ec3f19] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-11T06:57:21.228Z] INFO  [StorageFactory] [trace=83c2ad9c0cbf6b3e8b62693655ec3f19] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-11T06:57:21.231Z] INFO  [McpServer] [trace=83c2ad9c0cbf6b3e8b62693655ec3f19] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-11T06:58:34.805Z] INFO  [StorageFactory] [trace=45c916ee454d5c610fa651a91dde3e7d] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-11T06:58:34.836Z] INFO  [StorageFactory] [trace=45c916ee454d5c610fa651a91dde3e7d] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-11T06:58:34.839Z] INFO  [McpServer] [trace=45c916ee454d5c610fa651a91dde3e7d] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-11T13:57:48.507Z] INFO  [StorageFactory] [trace=8852d0ad3f03192db5f9e9ccc5dd6309] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-11T13:57:48.537Z] INFO  [StorageFactory] [trace=8852d0ad3f03192db5f9e9ccc5dd6309] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-11T13:57:48.541Z] INFO  [McpServer] [trace=8852d0ad3f03192db5f9e9ccc5dd6309] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-11T14:06:16.242Z] INFO  [StorageFactory] [trace=bcb00f4cc55bf843192067049627b5c1] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-11T14:06:16.272Z] INFO  [StorageFactory] [trace=bcb00f4cc55bf843192067049627b5c1] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-11T14:06:16.275Z] INFO  [McpServer] [trace=bcb00f4cc55bf843192067049627b5c1] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)

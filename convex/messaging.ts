@@ -9,13 +9,15 @@ async function requireConversation(ctx: QueryCtx | MutationCtx, id: Id<'conversa
   const me = await requireProfile(ctx);
   const conversation = await ctx.db.get('conversations', id);
   if (!conversation || (conversation.participantA !== me._id && conversation.participantB !== me._id)) throw new ConvexError('Not authorized to access this conversation.');
+  const other = await ctx.db.get('profiles', conversation.participantA === me._id ? conversation.participantB : conversation.participantA);
+  if (!other || other.deletionRequested) throw new ConvexError('This member is unavailable.');
   return { me, conversation };
 }
 export const start = mutation({
   args: { profileId: v.id('profiles') }, returns: v.id('conversations'),
   handler: async (ctx, args) => {
     const me = await requireProfile(ctx); const other = await ctx.db.get('profiles', args.profileId);
-    if (!other || other.isDemo) throw new ConvexError('Fictional demo profiles cannot receive messages.');
+    if (!other || other.isDemo || other.deletionRequested) throw new ConvexError('Fictional demo profiles cannot receive messages.');
     if (other._id === me._id) throw new ConvexError('You cannot message yourself.');
     const [participantA, participantB] = [me._id, other._id].sort();
     const existing = await ctx.db.query('conversations').withIndex('by_participantA_and_participantB', q => q.eq('participantA', participantA).eq('participantB', participantB)).unique();

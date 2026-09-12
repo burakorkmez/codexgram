@@ -41,8 +41,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Choose a profile photo for Codexgram.",
-          "cameraPermission": false,
+          "photosPermission": "Choose photos and videos for your Codexgram posts, stories, and profile.",
+          "cameraPermission": "Take photos for your Codexgram posts and stories.",
           "microphonePermission": false
         }
       ],

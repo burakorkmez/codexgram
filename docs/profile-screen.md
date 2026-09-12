@@ -1,11 +1,11 @@
 # Profile screen
 
-`ProfileTab` in `src/components/profile-screen.tsx` is shared by the protected native Profile tab and `/design-preview/profile`.
+The live Profile tab (`src/components/social/profile.tsx`) and design preview (`src/components/profile-screen.tsx`) share the header, profile summary, gallery tabs in `src/components/profile-layout.tsx`.
 
-The preview matches the supplied Alex Rivera reference with a photo, demo statistics, bio, interest tags, edit/discovery controls, four gallery filters, and a three-column image grid. Portrait and photo assets were extracted from the user-provided `design/profile-screen-ref.png`. The native transparent tab bar remains as requested, rather than reproducing the reference's flat tab bar.
+The layout follows `design/profile-screen-ref.png`: large avatar beside the three statistics, username/name/bio below, a wide neutral Edit Profile button, discovery control, four gallery tabs, and a rounded three-column photo grid. Per the requested changes, the existing logo asset is preserved, the hashtag row and header search are omitted, and the header create button becomes a settings gear. The avatar's small plus still opens photo editing. All screens use Expo Router native tabs, per the permanent project preference.
 
-Signed-in accounts show Clerk identity details, local post counts, and local posts instead of Alex's fictional identity and statistics. Saved reads the shared feed state. Videos and Tagged have empty states. Photo previews, profile sharing, demo follow controls, and editing work locally. Edits and follows are preview-session state, explicitly labeled in their sheets; they are not persisted to Clerk or a backend. Real sign-out remains available under Profile options.
+Live profiles retain backend data, pagination, follower/following lists, persistent profile editing, post navigation, member follow/message controls, sharing, and sign-out. Location and website are available in profile settings. Videos filters loaded profile posts, with further pagination available. Saved and Tagged display explicit unavailable messages because the backend does not expose those gallery feeds; no backend changes were made for this visual update.
 
-Visual comparisons are in `artifacts/profile`. The third row in the supplied screenshot is partially obscured by its tab bar, so those extracted photo assets contain only their visible portions.
+The preview uses fictional profile data and reference-derived photos. Content differences are intentional, including live accounts with no avatar or bio. The current logo and existing glyph designs differ from the reference intentionally. Removing hashtags moves the controls and gallery upward.
 
-Validated in the iPhone simulator: profile layout, Saved empty state, populated Edit Profile fields, and Save changes returning to the profile.
+Validation: `npm run typecheck` passed. Simulator screenshots are `artifacts/profile/updated-preview.png` and `artifacts/profile/updated-live.png`. Settings and its Edit Profile action were exercised on the live profile without changing account data.

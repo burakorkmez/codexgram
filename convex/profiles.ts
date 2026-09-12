@@ -18,6 +18,7 @@ export const me = query({ args: {}, returns: v.union(profileView, v.null()), han
 }});
 export const create = mutation({ args: { username: v.string(), name: v.string() }, returns: v.id('profiles'), handler: async (ctx, args) => {
   const identity = await requireIdentity(ctx);
+  if (await ctx.db.query('accountDeletions').withIndex('by_tokenIdentifier', q => q.eq('tokenIdentifier', identity.tokenIdentifier)).unique()) throw new ConvexError('This account has been scheduled for deletion.');
   const existing = await ctx.db.query('profiles').withIndex('by_tokenIdentifier', q => q.eq('tokenIdentifier', identity.tokenIdentifier)).unique();
   if (existing) return existing._id;
   const fields = normalize(args.username, args.name);

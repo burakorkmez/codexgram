@@ -7,7 +7,7 @@ import { useBackendToken } from '@/context/social-context';
 import { siteUrl, type SocialProfile, type SocialPost } from '@/lib/social';
 import { ui } from './ui';
 
-export function useMediaSource(id: string, kind: 'post' | 'avatar', enabled = true, revision = 0) {
+export function useMediaSource(id: string, kind: 'post' | 'avatar' | 'story', enabled = true, revision = 0) {
   const getToken = useBackendToken(); const [source, setSource] = useState<{ uri: string; headers: Record<string, string> } | null>(null);
   const [error, setError] = useState(false); const [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -30,9 +30,9 @@ export function Avatar({ profile, size = 40 }: { profile: SocialProfile; size?: 
   const photo: ImageSource | undefined = profile.hasAvatar ? source ?? undefined : profile.avatarUrl ? { uri: profile.avatarUrl } : undefined;
   return photo ? <Image source={photo} cachePolicy="none" style={{ width: size, height: size, borderRadius: size / 2 }} /> : <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: '#E8F1FF', alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: '#087EFF', fontWeight: '700', fontSize: size * 0.4 }}>{profile.name[0]?.toUpperCase()}</Text></View>;
 }
-export function PostMedia({ post, visible = false, thumbnail = false }: { post: SocialPost; visible?: boolean; thumbnail?: boolean }) {
+export function PostMedia({ post, visible = false, thumbnail = false, aspectRatio: requestedAspectRatio }: { post: SocialPost; visible?: boolean; thumbnail?: boolean; aspectRatio?: number }) {
   const { source, error, retry } = useMediaSource(post._id, 'post'); const [failed, setFailed] = useState(false);
-  const aspectRatio = thumbnail ? 1 : Math.max(0.65, Math.min(1.8, post.width / post.height));
+  const aspectRatio = requestedAspectRatio ?? (thumbnail ? 1 : Math.max(0.65, Math.min(1.8, post.width / post.height)));
   return <View style={{ width: '100%', aspectRatio, backgroundColor: '#EEF2F8', borderRadius: thumbnail ? 4 : 14, overflow: 'hidden', justifyContent: 'center' }}>
     {error || failed ? <Pressable onPress={() => { setFailed(false); retry(); }} style={{ padding: 12 }}><Text style={ui.muted}>Media unavailable. Tap to retry.</Text></Pressable>
       : !source ? <ActivityIndicator color="#087EFF" />

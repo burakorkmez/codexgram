@@ -15,3 +15,7 @@ Convex agent skills for common tasks can be installed by running
 `npx convex ai-files install`.
 
 <!-- convex-ai-end -->
+
+## Navigation preference
+
+Always use Expo Router native tabs for the app’s bottom navigation, including design previews. Do not replace them with custom tab bars or hide them to match a reference image. Preserve native tabs when updating screens.

@@ -9,6 +9,7 @@ export async function requireIdentity(ctx: Pick<QueryCtx, 'auth'>) {
 export async function requireProfile(ctx: QueryCtx | MutationCtx) {
   const identity = await requireIdentity(ctx);
   const profile = await ctx.db.query('profiles').withIndex('by_tokenIdentifier', q => q.eq('tokenIdentifier', identity.tokenIdentifier)).unique();
+  if (profile?.deletionRequested) throw new ConvexError('Account deletion is in progress.');
   if (profile?.isDemo) throw new ConvexError('Fictional demo profiles cannot sign in.');
   if (!profile) throw new ConvexError('Choose your username to continue.');
   return profile;

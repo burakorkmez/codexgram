@@ -3,8 +3,10 @@ import { v } from 'convex/values';
 
 export const mediaKind = v.union(v.literal('image'), v.literal('video'));
 export default defineSchema({
+  accountDeletions: defineTable({ tokenIdentifier: v.string(), clerkUserId: v.optional(v.string()), profileId: v.id('profiles'), state: v.union(v.literal('pending'), v.literal('cleanup'), v.literal('complete'), v.literal('failed')), attempts: v.number(), nextAttemptAt: v.optional(v.number()), error: v.optional(v.string()) }).index('by_tokenIdentifier', ['tokenIdentifier']),
+  stories: defineTable({ authorId: v.id('profiles'), uploadId: v.id('uploads'), storageId: v.id('_storage'), caption: v.string(), expiresAt: v.number() }).index('by_expiresAt', ['expiresAt']).index('by_authorId', ['authorId']),
   conversations: defineTable({ participantA: v.id('profiles'), participantB: v.id('profiles'), latestSequence: v.number() })
-    .index('by_participantA_and_participantB', ['participantA', 'participantB']),
+    .index('by_participantA_and_participantB', ['participantA', 'participantB']).index('by_participantB', ['participantB']),
   inbox: defineTable({ userId: v.id('profiles'), conversationId: v.id('conversations'), otherId: v.id('profiles'),
     hasMessages: v.boolean(), unread: v.boolean(), lastReadSequence: v.number(), latestIncomingSequence: v.number(),
     lastMessageAt: v.number(), preview: v.string() })
@@ -20,7 +22,7 @@ export default defineSchema({
     .index('by_userId_and_commentId', ['userId', 'commentId']).index('by_commentId', ['commentId']).index('by_postId', ['postId']),
   seedAssets: defineTable({ key: v.string(), storageId: v.id('_storage'), width: v.number(), height: v.number() }).index('by_key', ['key']),
   profiles: defineTable({
-    isDemo: v.optional(v.boolean()), seedKey: v.optional(v.string()),
+    deletionRequested: v.optional(v.boolean()), isDemo: v.optional(v.boolean()), seedKey: v.optional(v.string()),
     tokenIdentifier: v.string(), username: v.string(), name: v.string(), bio: v.string(),
     avatarUrl: v.optional(v.string()), avatarId: v.optional(v.id('_storage')), avatarUpdatedAt: v.optional(v.number()),
     website: v.string(), location: v.string(), searchText: v.string(),
@@ -39,9 +41,9 @@ export default defineSchema({
   follows: defineTable({ followerId: v.id('profiles'), followingId: v.id('profiles') })
     .index('by_followerId_and_followingId', ['followerId', 'followingId']).index('by_followingId', ['followingId']),
   uploads: defineTable({
-    ownerId: v.id('profiles'), purpose: v.union(v.literal('post'), v.literal('avatar')),
+    ownerId: v.id('profiles'), purpose: v.union(v.literal('post'), v.literal('avatar'), v.literal('story')),
     kind: mediaKind, width: v.number(), height: v.number(), duration: v.optional(v.number()),
     state: v.union(v.literal('pending'), v.literal('ready'), v.literal('published')),
-    storageId: v.optional(v.id('_storage')), postId: v.optional(v.id('posts')), expiresAt: v.number(),
+    storageId: v.optional(v.id('_storage')), postId: v.optional(v.id('posts')), storyId: v.optional(v.id('stories')), expiresAt: v.number(),
   }).index('by_ownerId', ['ownerId']),
 });

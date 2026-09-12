@@ -15,7 +15,7 @@ export const setLike = mutation({ args: { postId: v.id('posts'), liked: v.boolea
 }});
 export const setFollow = mutation({ args: { profileId: v.id('profiles'), following: v.boolean() }, returns: v.null(), handler: async (ctx, args) => {
   const me = await requireProfile(ctx); const target = await ctx.db.get('profiles', args.profileId);
-  if (!target) throw new ConvexError('This profile is unavailable.');
+  if (!target || target.deletionRequested) throw new ConvexError('This profile is unavailable.');
   if (target._id === me._id) throw new ConvexError('You cannot follow yourself.');
   const existing = await ctx.db.query('follows').withIndex('by_followerId_and_followingId', q => q.eq('followerId', me._id).eq('followingId', target._id)).unique();
   if (!!existing === args.following) return null;
