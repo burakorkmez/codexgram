@@ -1,0 +1,258 @@
+{
+  "date": "2026-09-12",
+  "baseline_commit": "6975fa6e64d9034dbfd625591034ed456d8ce809",
+  "scope": "Privacy audit supplement: source and installed dependencies; no live data or secrets inspected",
+  "baseline_manifest": "source-manifest.json",
+  "files": [
+    {
+      "path": "app.json",
+      "lines": 62,
+      "sha256": "1448fddcd6d2cd8f4648fc0c68dc3890dfe1bd64945b958443830933dbb7ea15"
+    },
+    {
+      "path": "convex/accounts.ts",
+      "lines": 133,
+      "sha256": "5cee7cc91d8183fe0b30e63d03e66c87412b32a881c235b190ac1f13dc2de0b7"
+    },
+    {
+      "path": "convex/auth.config.ts",
+      "lines": 5,
+      "sha256": "59d2858e6bea5875a3e291c09d42a52f90f4301f6c7adf4aa90c6f9acbc52f20"
+    },
+    {
+      "path": "convex/http.ts",
+      "lines": 74,
+      "sha256": "be30357c10f1ac3fc0d24377f56e7126bf7cf248b9f00420fc8dfdd2d7957b4e"
+    },
+    {
+      "path": "convex/lib/auth.ts",
+      "lines": 16,
+      "sha256": "66e5db2074d5a97d255605aa357b1011139d7a50b7e806fa79b5323473d7b9ce"
+    },
+    {
+      "path": "convex/lib/views.ts",
+      "lines": 31,
+      "sha256": "13936ca16c8b8e2a76b76b1be89f6544ce9d19aa197f0cf9759591f006491322"
+    },
+    {
+      "path": "convex/messaging.ts",
+      "lines": 79,
+      "sha256": "10a88b32d1d333742ad323936ecbb34504753443e93db76aa622d6e8e705de2c"
+    },
+    {
+      "path": "convex/postInteractions.ts",
+      "lines": 31,
+      "sha256": "2e9e2f0dfa965134bd62f05b1c849424afa3bede9a708712240c5f078146388a"
+    },
+    {
+      "path": "convex/posts.ts",
+      "lines": 66,
+      "sha256": "854d5dafba35d09317ba4a51ee4fe43c735ba10d262369e2bddca3d4b6cbcc9a"
+    },
+    {
+      "path": "convex/profiles.ts",
+      "lines": 46,
+      "sha256": "3cd52d2146cc3cebbff9a3d4bcb5719f7096fe927b556fe5f180041d39dd1034"
+    },
+    {
+      "path": "convex/schema.ts",
+      "lines": 49,
+      "sha256": "a5935e6592ea5e38ae4dcf8fd165f62701992d589e770f8dc6e3a131d8a5d0b7"
+    },
+    {
+      "path": "convex/seed.ts",
+      "lines": 109,
+      "sha256": "6384b7b31226d854866a05030f49f9b65bebc927121b7fc4fe6843cd4a784e27"
+    },
+    {
+      "path": "convex/social.ts",
+      "lines": 69,
+      "sha256": "bb3a2f9118f9f3371e7f599bf32be654a45d94ab151cf5e3c5755d1b591a3178"
+    },
+    {
+      "path": "convex/stories.ts",
+      "lines": 49,
+      "sha256": "ccc0b67c70012563d88da28deb526a93ce74a529d662deea420a3123e6199491"
+    },
+    {
+      "path": "convex/uploads.ts",
+      "lines": 59,
+      "sha256": "8913a6bdcb5d84a1dd21cd25d483abaca86781567313b980a2e717841cd6153b"
+    },
+    {
+      "path": "eas.json",
+      "lines": 25,
+      "sha256": "f200ec17330ca2ea7debea9daed54dd25e7e9db46099bf9f99830d005b9103b7"
+    },
+    {
+      "path": "ios/codexgram/Info.plist",
+      "lines": 100,
+      "sha256": "f6a0539601cf4b55423f84d9dd020404c5f9948907008f0cb77cb746834a7423"
+    },
+    {
+      "path": "ios/codexgram/PrivacyInfo.xcprivacy",
+      "lines": 37,
+      "sha256": "b9289ecfec677540a293fba948db7268c02b1d44943fa66b1e7a85ba0c31a252"
+    },
+    {
+      "path": "legal/INVESTIGATION.md",
+      "lines": 118,
+      "sha256": "36069885c2ec9561198f9689fc1e7e0a1f690040eaa92247174fec2b4d88aa70"
+    },
+    {
+      "path": "legal/index.html",
+      "lines": 61,
+      "sha256": "fa843e8f7ffa1d0250e38b12116082d1ddf741bbfc05e5d5cba6b8d04a78c4af"
+    },
+    {
+      "path": "legal/site.js",
+      "lines": 22,
+      "sha256": "27dfd0957d10332aacba19db4b0e624df44c8abdadb24b52386beeaf4bd5c1e7"
+    },
+    {
+      "path": "node_modules/@clerk/expo/dist/provider/ClerkProvider.js",
+      "lines": 82,
+      "sha256": "9af0ae9b9da34a757818105fd84389ac6e4c019e3865eca4b75ce5f4cdad08be"
+    },
+    {
+      "path": "node_modules/@clerk/expo/dist/provider/singleton/createClerkInstance.js",
+      "lines": 180,
+      "sha256": "5f9e6ba8580c47fe71770ec2b2131cef7ff2b9a505ad95400b5682678346e4ab"
+    },
+    {
+      "path": "node_modules/@clerk/expo/dist/token-cache/index.js",
+      "lines": 55,
+      "sha256": "5aabda4350c81f688ee2df199061e915b7ef136dc25f649be981278680db730a"
+    },
+    {
+      "path": "node_modules/@clerk/expo/package.json",
+      "lines": 201,
+      "sha256": "e6409136c636158dd454965f88861bf97fb6e99f74a32da73385cbad023fb216"
+    },
+    {
+      "path": "node_modules/@clerk/shared/dist/_chunks/telemetry-DZp9OI1j.js",
+      "lines": 677,
+      "sha256": "56e61049b6725b6f113277a2a1818014537af8918c3e87c124b185eec77c20a1"
+    },
+    {
+      "path": "node_modules/@clerk/shared/dist/telemetry.js",
+      "lines": 13,
+      "sha256": "fabdbb0231e25744073855299155dbdb98f4ad4b77bafa88e8bcb683e5b51f80"
+    },
+    {
+      "path": "node_modules/@clerk/shared/package.json",
+      "lines": 173,
+      "sha256": "0f06772bf622cead3084e18576ac4217ed42adc0855147169500d2b455043488"
+    },
+    {
+      "path": "package-lock.json",
+      "lines": 12465,
+      "sha256": "3e1c502e2e8a94b4a7322a07a1241e776bded7c15ed3735e494c3ae5354813da"
+    },
+    {
+      "path": "package.json",
+      "lines": 63,
+      "sha256": "e368156c40df66ad0db1db93bb0a7d54c43a22de4fa6076eb7678b24ef9ce769"
+    },
+    {
+      "path": "scripts/seed-demo.mjs",
+      "lines": 24,
+      "sha256": "ce743d869d7d7d72da82d477682b2f4c6d819e3cc6cc91b648a76906c2d1cd13"
+    },
+    {
+      "path": "src/app/_layout.tsx",
+      "lines": 56,
+      "sha256": "0067150c2f2ac7c8100a3e38968f0ad75ba8bf54bbfbe5baf54256857056bf1a"
+    },
+    {
+      "path": "src/app/index.tsx",
+      "lines": 254,
+      "sha256": "cb0fb4608e7462bddc5aa17b67f2df574fab312fc7f2b2acacfa44c1ef4790bc"
+    },
+    {
+      "path": "src/components/chat-screen.tsx",
+      "lines": 104,
+      "sha256": "423405dfd4317240d3a12871efc2a98e33cbb0151394dbef74938cce13f7fe46"
+    },
+    {
+      "path": "src/components/edit-profile-screen.tsx",
+      "lines": 81,
+      "sha256": "488d5f962e5a6a3049871fa253edb48af736531fcd127fe4ccc366cd92288c53"
+    },
+    {
+      "path": "src/components/profile-screen.tsx",
+      "lines": 89,
+      "sha256": "fa0d951d8ed8863fbc8d7a14f68a02b54621cf56f54555b4acbcf9004be461ca"
+    },
+    {
+      "path": "src/components/settings-screen.tsx",
+      "lines": 81,
+      "sha256": "d7ce1b30bad6ba48cacb351245881b323284111fefccfb03cf54ca82398fe790"
+    },
+    {
+      "path": "src/components/social/composer.tsx",
+      "lines": 104,
+      "sha256": "ceb819967e7851f028e37cb52d6fd772e7ff84454275fee4d2f957cefedfa65d"
+    },
+    {
+      "path": "src/components/social/explore.tsx",
+      "lines": 61,
+      "sha256": "cc443039d6c8898d49c756eccf0e7f3ded92c493e30e705d2833275eb06b0b83"
+    },
+    {
+      "path": "src/components/social/media.tsx",
+      "lines": 54,
+      "sha256": "899c7c3ff87c1d0db3d10fc71aabff2e19a80990436174974287f227274be5b1"
+    },
+    {
+      "path": "src/components/social/messages.tsx",
+      "lines": 44,
+      "sha256": "c23d5afcb7bec52e89db5a79060022cd85f0ab27107ebf42002605cd7130a5f6"
+    },
+    {
+      "path": "src/components/social/post-detail-actions.tsx",
+      "lines": 12,
+      "sha256": "2b886afc359077abbf48d468e69f7821581d1d738f1b02199078f365b8785df9"
+    },
+    {
+      "path": "src/components/social/profile.tsx",
+      "lines": 84,
+      "sha256": "205ae7da52c1264a5b39847e8a5fd1b7086d84bd754c16a1842aab76c21e43f5"
+    },
+    {
+      "path": "src/components/social/stories.tsx",
+      "lines": 54,
+      "sha256": "f46564a5c99bee43fcfe8e5eac5d756361358df722c8b6d565fa15a61048fe4f"
+    },
+    {
+      "path": "src/components/tab-screens.tsx",
+      "lines": 58,
+      "sha256": "28a51fa9d6b0d9172bbde23f4d68fff071862b8f5e59de9c869f8ef5ce80373c"
+    },
+    {
+      "path": "src/context/feed-context.tsx",
+      "lines": 22,
+      "sha256": "3e23ff1926cbe0a7c0176418561694338d3d726a9a22bcca9b2f383a4579ad37"
+    },
+    {
+      "path": "src/context/messages-context.tsx",
+      "lines": 23,
+      "sha256": "1a935a52411e8a1048952a2ce75ceca7fef532e20190c6b3eb93b5852e79abef"
+    },
+    {
+      "path": "src/context/social-context.tsx",
+      "lines": 53,
+      "sha256": "04a28330aa27950823ac7a3f4d9b24cf35ccd8bdcf13a96257c725d8fdca9234"
+    },
+    {
+      "path": "src/hooks/use-social-auth.ts",
+      "lines": 44,
+      "sha256": "b81ae6352bed464d3584fd9757ebd10e8fe42c72e7c0c63fa6a30c977d0a2e23"
+    },
+    {
+      "path": "src/lib/upload.ts",
+      "lines": 33,
+      "sha256": "a935be76d78bdc0fc5f833068b2c0d6064a932c4d1d5f5586fa1cdc46dc2ea16"
+    }
+  ]
+}

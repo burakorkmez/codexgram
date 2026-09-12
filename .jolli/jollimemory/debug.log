@@ -18,3 +18,12 @@
 [2026-09-11T14:06:16.242Z] INFO  [StorageFactory] [trace=bcb00f4cc55bf843192067049627b5c1] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
 [2026-09-11T14:06:16.272Z] INFO  [StorageFactory] [trace=bcb00f4cc55bf843192067049627b5c1] Storage mode: dual-write (primary=orphan, shadow=folder)
 [2026-09-11T14:06:16.275Z] INFO  [McpServer] [trace=bcb00f4cc55bf843192067049627b5c1] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-12T03:31:28.533Z] INFO  [StorageFactory] [trace=c45edd6bdfe1788631bef36b0d9c0f00] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-12T03:31:28.568Z] INFO  [StorageFactory] [trace=c45edd6bdfe1788631bef36b0d9c0f00] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-12T03:31:28.572Z] INFO  [McpServer] [trace=c45edd6bdfe1788631bef36b0d9c0f00] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-12T03:36:59.016Z] INFO  [StorageFactory] [trace=6d27d165764258d4d2121b12233bbfdc] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-12T03:36:59.103Z] INFO  [StorageFactory] [trace=6d27d165764258d4d2121b12233bbfdc] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-12T03:36:59.107Z] INFO  [McpServer] [trace=6d27d165764258d4d2121b12233bbfdc] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)
+[2026-09-12T03:36:59.150Z] INFO  [StorageFactory] [trace=1ebba5753787a1f5afe0e4f048e1977c] StorageFactory.create: storageMode=dual-write, projectPath=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram
+[2026-09-12T03:36:59.187Z] INFO  [StorageFactory] [trace=1ebba5753787a1f5afe0e4f048e1977c] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-09-12T03:36:59.192Z] INFO  [McpServer] [trace=1ebba5753787a1f5afe0e4f048e1977c] MCP server connected over stdio (cwd=/Users/burakorkmez/Desktop/youtube/brainstorming/codexgram)

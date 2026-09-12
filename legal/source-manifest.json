@@ -1,0 +1,492 @@
+{
+  "date": "2026-09-12",
+  "commit": "6975fa6e64d9034dbfd625591034ed456d8ce809",
+  "scope": "Repository source snapshot; not a deployed-system certification. Source and test review, supporting docs, configuration and preview routing; credentials and dependency internals excluded.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "lines": 21,
+      "sha256": "09542e53b7983547162f270184a0b45831cac7c2d16847eaa503b7a1de2d55b9"
+    },
+    {
+      "path": "LICENSE",
+      "lines": 21,
+      "sha256": "fb3ca4a837f5779e83cef89b78253a8949cfb9429c340309f62d0465ec6610b4"
+    },
+    {
+      "path": "PLAN.md",
+      "lines": 309,
+      "sha256": "35d0e1e941fb8c687f940e470cc83eb70a11e9679eddb1b55e63d23e5bbf4b8c"
+    },
+    {
+      "path": "app.json",
+      "lines": 62,
+      "sha256": "1448fddcd6d2cd8f4648fc0c68dc3890dfe1bd64945b958443830933dbb7ea15"
+    },
+    {
+      "path": "convex/README.md",
+      "lines": 90,
+      "sha256": "9dd90e16e8e4a3ae0d1e9270a7090309d02481e2993996ceb216d6cff820e559"
+    },
+    {
+      "path": "convex/_generated/ai/guidelines.md",
+      "lines": 459,
+      "sha256": "533ba2428f2dc572e825555e6e681d2e56e7e757c15a3fdd036a5d705413f020"
+    },
+    {
+      "path": "convex/accounts.test.ts",
+      "lines": 109,
+      "sha256": "05fb7ea521236b388ecc905568de361be7f5862e1674cf5f3bec2aa0900a296d"
+    },
+    {
+      "path": "convex/accounts.ts",
+      "lines": 133,
+      "sha256": "5cee7cc91d8183fe0b30e63d03e66c87412b32a881c235b190ac1f13dc2de0b7"
+    },
+    {
+      "path": "convex/auth.config.ts",
+      "lines": 5,
+      "sha256": "59d2858e6bea5875a3e291c09d42a52f90f4301f6c7adf4aa90c6f9acbc52f20"
+    },
+    {
+      "path": "convex/convex.config.ts",
+      "lines": 4,
+      "sha256": "10d9864878253cf9a06e08fa4d11ef30ee1fce399faaa888269f8f1f509ddd8f"
+    },
+    {
+      "path": "convex/http.ts",
+      "lines": 74,
+      "sha256": "be30357c10f1ac3fc0d24377f56e7126bf7cf248b9f00420fc8dfdd2d7957b4e"
+    },
+    {
+      "path": "convex/lib/auth.ts",
+      "lines": 16,
+      "sha256": "66e5db2074d5a97d255605aa357b1011139d7a50b7e806fa79b5323473d7b9ce"
+    },
+    {
+      "path": "convex/lib/seed_data.ts",
+      "lines": 54,
+      "sha256": "ea299f3fcd48ad841c2bde3776a3fa1c92e606a22b718d036e45102812e168f2"
+    },
+    {
+      "path": "convex/lib/video.ts",
+      "lines": 27,
+      "sha256": "98e029b0fd6fd40f2d1d43978e4db5752dd01a001cdde4f4934ea0c1eebe9f5a"
+    },
+    {
+      "path": "convex/lib/views.ts",
+      "lines": 31,
+      "sha256": "13936ca16c8b8e2a76b76b1be89f6544ce9d19aa197f0cf9759591f006491322"
+    },
+    {
+      "path": "convex/messaging.test.ts",
+      "lines": 79,
+      "sha256": "793c5b81e921df5bb6032672982216ec5107cfc6ddd8c001bc31e7e90200ecf4"
+    },
+    {
+      "path": "convex/messaging.ts",
+      "lines": 79,
+      "sha256": "10a88b32d1d333742ad323936ecbb34504753443e93db76aa622d6e8e705de2c"
+    },
+    {
+      "path": "convex/postInteractions.ts",
+      "lines": 31,
+      "sha256": "2e9e2f0dfa965134bd62f05b1c849424afa3bede9a708712240c5f078146388a"
+    },
+    {
+      "path": "convex/posts.ts",
+      "lines": 66,
+      "sha256": "854d5dafba35d09317ba4a51ee4fe43c735ba10d262369e2bddca3d4b6cbcc9a"
+    },
+    {
+      "path": "convex/profiles.ts",
+      "lines": 46,
+      "sha256": "3cd52d2146cc3cebbff9a3d4bcb5719f7096fe927b556fe5f180041d39dd1034"
+    },
+    {
+      "path": "convex/schema.ts",
+      "lines": 49,
+      "sha256": "a5935e6592ea5e38ae4dcf8fd165f62701992d589e770f8dc6e3a131d8a5d0b7"
+    },
+    {
+      "path": "convex/seed.test.ts",
+      "lines": 37,
+      "sha256": "cbf2df8b8666d9c6afd328b0ddb19ab1f9ddfb801f0013efef0b66d90a9031f6"
+    },
+    {
+      "path": "convex/seed.ts",
+      "lines": 109,
+      "sha256": "6384b7b31226d854866a05030f49f9b65bebc927121b7fc4fe6843cd4a784e27"
+    },
+    {
+      "path": "convex/social.test.ts",
+      "lines": 199,
+      "sha256": "134831b5bda2c8915a83bd450e0d2b37d4ad8d2a434c9c5fc4c5b2bb4170254b"
+    },
+    {
+      "path": "convex/social.ts",
+      "lines": 69,
+      "sha256": "bb3a2f9118f9f3371e7f599bf32be654a45d94ab151cf5e3c5755d1b591a3178"
+    },
+    {
+      "path": "convex/stories.test.ts",
+      "lines": 58,
+      "sha256": "9ce96b0de265ee3943edf4001587f6d436e8d33abd43cb570de0fddf55c935fe"
+    },
+    {
+      "path": "convex/stories.ts",
+      "lines": 49,
+      "sha256": "ccc0b67c70012563d88da28deb526a93ce74a529d662deea420a3123e6199491"
+    },
+    {
+      "path": "convex/tsconfig.json",
+      "lines": 26,
+      "sha256": "d2c95b06c52a208aeefc3fd08398244a890847fcd366ef3b4941b095f2570899"
+    },
+    {
+      "path": "convex/uploads.ts",
+      "lines": 59,
+      "sha256": "8913a6bdcb5d84a1dd21cd25d483abaca86781567313b980a2e717841cd6153b"
+    },
+    {
+      "path": "docs/account-deletion.md",
+      "lines": 11,
+      "sha256": "9378a69070d0a0b654ba1cf01a6d53e65e1e164f65f8eaf6a70bd907959b0f58"
+    },
+    {
+      "path": "docs/authentication.md",
+      "lines": 40,
+      "sha256": "8398a5a94bc3c52678b6fa45d96178d66318937e2651721635dfa1f75ff143e6"
+    },
+    {
+      "path": "docs/chat-screen.md",
+      "lines": 23,
+      "sha256": "0e38a67b957225e8e6833e9069f31130e6775413d4345d59d813d4bc927f6e09"
+    },
+    {
+      "path": "docs/edit-profile.md",
+      "lines": 11,
+      "sha256": "a1b61a459c4da2d34a14926fdbb9f8587014967c4d9f676c5f46a4025ae5e673"
+    },
+    {
+      "path": "docs/explore-screen.md",
+      "lines": 17,
+      "sha256": "100c55029b26d82fb463813096613636d32d967de04617a54788ca8796ac99e0"
+    },
+    {
+      "path": "docs/home-screen.md",
+      "lines": 35,
+      "sha256": "ee83f97caf99bfbe2375e90cb828a1b42fb9e16452f431f421e3700e8d5490f2"
+    },
+    {
+      "path": "docs/profile-screen.md",
+      "lines": 11,
+      "sha256": "d751829c138d9b9042c7dc200f0bd6426632f36fefd8f3be5ca4aee7bbf633a2"
+    },
+    {
+      "path": "docs/settings-screen.md",
+      "lines": 9,
+      "sha256": "53a4f63352491c23463fcb066f08dddce54aed8160aeb930bf33e978e203c762"
+    },
+    {
+      "path": "docs/social-features.md",
+      "lines": 81,
+      "sha256": "886b5a6026fe3b78ca837abaa97574faea67a7ff1ab94edf38db848113c76f86"
+    },
+    {
+      "path": "eas.json",
+      "lines": 25,
+      "sha256": "f200ec17330ca2ea7debea9daed54dd25e7e9db46099bf9f99830d005b9103b7"
+    },
+    {
+      "path": "package.json",
+      "lines": 63,
+      "sha256": "e368156c40df66ad0db1db93bb0a7d54c43a22de4fa6076eb7678b24ef9ce769"
+    },
+    {
+      "path": "scripts/seed-demo.mjs",
+      "lines": 24,
+      "sha256": "ce743d869d7d7d72da82d477682b2f4c6d819e3cc6cc91b648a76906c2d1cd13"
+    },
+    {
+      "path": "src/app/(tabs)/_layout.tsx",
+      "lines": 4,
+      "sha256": "d998b584efecb1bb548dc02fb69c8e1f714e28df2f1055d895c695f5e0f45b27"
+    },
+    {
+      "path": "src/app/(tabs)/explore.tsx",
+      "lines": 1,
+      "sha256": "f28a4c660fb58e7e986cfddfd85075cb722f6b8d055958316798712b299457e2"
+    },
+    {
+      "path": "src/app/(tabs)/home.tsx",
+      "lines": 1,
+      "sha256": "8805b32d7135f2d1481ee691ec6480aa4c2d914fb3d0171d068c96ad0c039e2d"
+    },
+    {
+      "path": "src/app/(tabs)/messages.tsx",
+      "lines": 1,
+      "sha256": "29876d3b92a436c5366d4add3efdea49bcdf1f5aa9fb3133d0609ee72d634187"
+    },
+    {
+      "path": "src/app/(tabs)/profile.tsx",
+      "lines": 1,
+      "sha256": "5d8a6ae243b61ece00048afe84cedb2b5efbbd595dff4497f9ce19443416a7d3"
+    },
+    {
+      "path": "src/app/_layout.tsx",
+      "lines": 56,
+      "sha256": "0067150c2f2ac7c8100a3e38968f0ad75ba8bf54bbfbe5baf54256857056bf1a"
+    },
+    {
+      "path": "src/app/chat/[id].tsx",
+      "lines": 10,
+      "sha256": "dbaa1bd19fd4b4abc73b23dd5985b2f1b1def15b36e299520a847fbe3b1110c4"
+    },
+    {
+      "path": "src/app/compose.tsx",
+      "lines": 3,
+      "sha256": "89d125907a6786b58dceb680849dc31af2f2265b6752e6e625c916298d5da0b0"
+    },
+    {
+      "path": "src/app/design-preview/_layout.tsx",
+      "lines": 7,
+      "sha256": "7f1e3852c8407ac1f044c15bfc1bc00d2b9c768e27a15527ec36593b10b2f56b"
+    },
+    {
+      "path": "src/app/design-preview/explore.tsx",
+      "lines": 1,
+      "sha256": "f55b9ce2bacc5dc0120fb43a54146dd613f00fe30daf9945431eafd1dafdb229"
+    },
+    {
+      "path": "src/app/design-preview/home.tsx",
+      "lines": 1,
+      "sha256": "b0c6c919048af5c9eee2f8688254e22d6ee4544937c57437a402c42042aa1115"
+    },
+    {
+      "path": "src/app/design-preview/index.tsx",
+      "lines": 2,
+      "sha256": "abef40affc165b8ee79ca495ba225c28cffe8ed59bcaf024b8ca4ceab77c81fe"
+    },
+    {
+      "path": "src/app/design-preview/messages.tsx",
+      "lines": 2,
+      "sha256": "fd115c4a010da10c965681cffabdd96f0fe274e6cb9a78440d8df94654b4ebb3"
+    },
+    {
+      "path": "src/app/design-preview/profile.tsx",
+      "lines": 1,
+      "sha256": "6b918c85ee4801b3d41c9e67ebced76699db5ea370f1e6cc117d348d4b5d3e4e"
+    },
+    {
+      "path": "src/app/index.tsx",
+      "lines": 254,
+      "sha256": "cb0fb4608e7462bddc5aa17b67f2df574fab312fc7f2b2acacfa44c1ef4790bc"
+    },
+    {
+      "path": "src/app/member/[id].tsx",
+      "lines": 3,
+      "sha256": "a33e4baaf69fe4e687192db89ee3810a9340b88fe44d94264beaa105cfba4bf0"
+    },
+    {
+      "path": "src/app/post/[id].tsx",
+      "lines": 3,
+      "sha256": "456ee972e921e8ecb62fd356fcd9ff8c1e4a879e77eb7dbcd4f2e4a2d816b36d"
+    },
+    {
+      "path": "src/app/sso-callback.tsx",
+      "lines": 9,
+      "sha256": "19cbf64ebb6753eef5ce36a139379575adf1b927e795aad8932740294ba61e81"
+    },
+    {
+      "path": "src/app/story-compose.tsx",
+      "lines": 2,
+      "sha256": "40fa3c8be83b29d102c2293b76bfa9a449d802e1b8721b7215c6b42c0572fda4"
+    },
+    {
+      "path": "src/components/app-tabs.tsx",
+      "lines": 30,
+      "sha256": "db384dc522db95ec17b9e97421d9a09e43639869ee2af0ed302c95b33c529c67"
+    },
+    {
+      "path": "src/components/chat-screen.tsx",
+      "lines": 104,
+      "sha256": "423405dfd4317240d3a12871efc2a98e33cbb0151394dbef74938cce13f7fe46"
+    },
+    {
+      "path": "src/components/demo-message-avatar.tsx",
+      "lines": 9,
+      "sha256": "0170af82c36f2b4851144a0b2c574e035f947f482c1f23732b3e140631b54273"
+    },
+    {
+      "path": "src/components/edit-profile-screen.tsx",
+      "lines": 81,
+      "sha256": "488d5f962e5a6a3049871fa253edb48af736531fcd127fe4ccc366cd92288c53"
+    },
+    {
+      "path": "src/components/explore-layout.tsx",
+      "lines": 54,
+      "sha256": "b0be95ba63e7df45c5df9fb2342e97fb65cdf6ee8840e59f5391c2ec6f64ca2e"
+    },
+    {
+      "path": "src/components/explore-screen.tsx",
+      "lines": 57,
+      "sha256": "92f39ee53e114e9b9345fb4a5b56e2fbcab73ddce54b5708d0fc57bfa27e3051"
+    },
+    {
+      "path": "src/components/feed-icon.tsx",
+      "lines": 47,
+      "sha256": "423b490af10693f8e26663206fa07fa21dca8b67ce7175d31afab9e9268e1e58"
+    },
+    {
+      "path": "src/components/home-feed.tsx",
+      "lines": 129,
+      "sha256": "1b690b9827ab858ed8f23c3f7dc895185ed39ddf5170372a3f28d6f9569a927c"
+    },
+    {
+      "path": "src/components/home-layout.tsx",
+      "lines": 14,
+      "sha256": "57c8cc6eb96b49909ca4fdf08ee284e364e454330f3d6f4d564046859cfd43cc"
+    },
+    {
+      "path": "src/components/home-tab.tsx",
+      "lines": 10,
+      "sha256": "397a93aff9239c5f04a2905e00b285f669f89850186562248f381e871af96e98"
+    },
+    {
+      "path": "src/components/profile-layout.tsx",
+      "lines": 41,
+      "sha256": "dd30df7d583caecd72e39892456a2c47e16ea53b3310f33ad281a49313f695d1"
+    },
+    {
+      "path": "src/components/profile-screen.tsx",
+      "lines": 89,
+      "sha256": "fa0d951d8ed8863fbc8d7a14f68a02b54621cf56f54555b4acbcf9004be461ca"
+    },
+    {
+      "path": "src/components/settings-screen.tsx",
+      "lines": 81,
+      "sha256": "d7ce1b30bad6ba48cacb351245881b323284111fefccfb03cf54ca82398fe790"
+    },
+    {
+      "path": "src/components/social/composer.tsx",
+      "lines": 104,
+      "sha256": "ceb819967e7851f028e37cb52d6fd772e7ff84454275fee4d2f957cefedfa65d"
+    },
+    {
+      "path": "src/components/social/explore.tsx",
+      "lines": 61,
+      "sha256": "cc443039d6c8898d49c756eccf0e7f3ded92c493e30e705d2833275eb06b0b83"
+    },
+    {
+      "path": "src/components/social/feed.tsx",
+      "lines": 22,
+      "sha256": "986c0c8d595cbcd7182866fa64f20fdac9a1e297a70d46b1661afe80a518868d"
+    },
+    {
+      "path": "src/components/social/media.tsx",
+      "lines": 54,
+      "sha256": "899c7c3ff87c1d0db3d10fc71aabff2e19a80990436174974287f227274be5b1"
+    },
+    {
+      "path": "src/components/social/messages.tsx",
+      "lines": 44,
+      "sha256": "c23d5afcb7bec52e89db5a79060022cd85f0ab27107ebf42002605cd7130a5f6"
+    },
+    {
+      "path": "src/components/social/post-card.tsx",
+      "lines": 69,
+      "sha256": "5a9b36b773938db261f9619132cd7cc034a5d6e1315a92af599e61dc4e7684c7"
+    },
+    {
+      "path": "src/components/social/post-detail-actions.tsx",
+      "lines": 12,
+      "sha256": "2b886afc359077abbf48d468e69f7821581d1d738f1b02199078f365b8785df9"
+    },
+    {
+      "path": "src/components/social/post-detail.tsx",
+      "lines": 73,
+      "sha256": "eeaf4a2c54b42564f5375bcec82595624df2cd2685b87488f2781ac63c5c64b7"
+    },
+    {
+      "path": "src/components/social/profile.tsx",
+      "lines": 84,
+      "sha256": "205ae7da52c1264a5b39847e8a5fd1b7086d84bd754c16a1842aab76c21e43f5"
+    },
+    {
+      "path": "src/components/social/stories.tsx",
+      "lines": 54,
+      "sha256": "f46564a5c99bee43fcfe8e5eac5d756361358df722c8b6d565fa15a61048fe4f"
+    },
+    {
+      "path": "src/components/social/ui.tsx",
+      "lines": 29,
+      "sha256": "613cc06d313e0e420ed244a603452ae7bb2577319cf182707d6c4ef059322707"
+    },
+    {
+      "path": "src/components/tab-screens.tsx",
+      "lines": 58,
+      "sha256": "28a51fa9d6b0d9172bbde23f4d68fff071862b8f5e59de9c869f8ef5ce80373c"
+    },
+    {
+      "path": "src/context/feed-context.tsx",
+      "lines": 22,
+      "sha256": "3e23ff1926cbe0a7c0176418561694338d3d726a9a22bcca9b2f383a4579ad37"
+    },
+    {
+      "path": "src/context/messages-context.tsx",
+      "lines": 23,
+      "sha256": "1a935a52411e8a1048952a2ce75ceca7fef532e20190c6b3eb93b5852e79abef"
+    },
+    {
+      "path": "src/context/social-context.tsx",
+      "lines": 53,
+      "sha256": "04a28330aa27950823ac7a3f4d9b24cf35ccd8bdcf13a96257c725d8fdca9234"
+    },
+    {
+      "path": "src/hooks/use-social-auth.ts",
+      "lines": 44,
+      "sha256": "b81ae6352bed464d3584fd9757ebd10e8fe42c72e7c0c63fa6a30c977d0a2e23"
+    },
+    {
+      "path": "src/lib/auth-errors.ts",
+      "lines": 12,
+      "sha256": "e1fe88cca83c1d48037f6fecf207561c34484c681e7e02b14708badbe8bd300f"
+    },
+    {
+      "path": "src/lib/explore-data.ts",
+      "lines": 20,
+      "sha256": "68512942c3dc72697ca4bccb4f80e6d7264f1e8406fa709ef1c8ef3b33299f56"
+    },
+    {
+      "path": "src/lib/feed-data.ts",
+      "lines": 21,
+      "sha256": "ecf569494de1a6972d51007a0ebe9c2a9ac4d82556f59a2962834be6f0c7895a"
+    },
+    {
+      "path": "src/lib/profile-form.ts",
+      "lines": 22,
+      "sha256": "850c2eabd0ded7afe419faeaf5188c88f6b68d88cba8cd97dc5df3f262fada95"
+    },
+    {
+      "path": "src/lib/social.ts",
+      "lines": 11,
+      "sha256": "8da819cd035f1ac14bace34c9f9c76774f2e447a47b51eb9ebf9d835a104e89b"
+    },
+    {
+      "path": "src/lib/upload.ts",
+      "lines": 33,
+      "sha256": "a935be76d78bdc0fc5f833068b2c0d6064a932c4d1d5f5586fa1cdc46dc2ea16"
+    },
+    {
+      "path": "tsconfig.json",
+      "lines": 20,
+      "sha256": "2c427a7bc50569dc5167d39425793d8bba22eeffcb213fff05f6274980784508"
+    },
+    {
+      "path": "vitest.config.ts",
+      "lines": 2,
+      "sha256": "27b23dc73278b06edb177aaed35836f0373a645875776ab2670ed47c2f353cac"
+    }
+  ]
+}
