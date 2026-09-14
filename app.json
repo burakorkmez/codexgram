@@ -12,7 +12,8 @@
       "bundleIdentifier": "com.burakorkmez.codexgram",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "appleTeamId": "9NSCVL7862"
     },
     "android": {
       "adaptiveIcon": {
@@ -46,7 +47,15 @@
           "microphonePermission": false
         }
       ],
-      "expo-video"
+      "expo-video",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "codexgram",
+          "organization": "codesistency-gs"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

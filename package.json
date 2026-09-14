@@ -5,6 +5,7 @@
   "dependencies": {
     "@clerk/expo": "^4.6.6",
     "@expo/ui": "~57.0.17",
+    "@sentry/react-native": "^8.26.0",
     "convex": "^1.45.0",
     "expo": "~57.0.21",
     "expo-apple-authentication": "~57.0.1",

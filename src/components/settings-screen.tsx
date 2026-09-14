@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import * as Sentry from '@sentry/react-native';
 import { errorMessage } from '@/lib/social';
+import { openLegalDocument } from '@/lib/legal-links';
 import { useRef, useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FeedIcon, type IconName } from './feed-icon';
+import { SentryTestScreen } from './sentry-test-screen';
 
 const ink = '#080E3B';
 type SettingsProps = {
@@ -21,6 +24,7 @@ export function SettingsScreen({ onClose, onEdit, onSaved, onDelete, onSignOut, 
   const { width, height } = useWindowDimensions(); const insets = useSafeAreaInsets();
   const s = width / 390; const v = (height - insets.top - insets.bottom) / 810;
   const [signingOut, setSigningOut] = useState(false);
+  const [showSentryTest, setShowSentryTest] = useState(false);
   const [deleting, setDeleting] = useState(false); const deleteBusy = useRef(false);
   const confirmDeletion = () => {
     if (preview || !onDelete) { Alert.alert('Preview account', 'Account deletion is only available in your live account settings.'); return; }
@@ -44,9 +48,9 @@ export function SettingsScreen({ onClose, onEdit, onSaved, onDelete, onSignOut, 
   ];
   const support: Row[] = [
     { label: 'Help & support', icon: 'help', action: unavailable('Help & support', 'A support contact has not been configured yet.') },
-    { label: 'Report a problem', icon: 'support', action: unavailable('Report a problem', 'Problem reporting is not available yet.') },
-    { label: 'Privacy Policy', icon: 'document', action: unavailable('Privacy Policy', 'A privacy policy has not been published yet.') },
-    { label: 'Terms of Service', icon: 'document', action: unavailable('Terms of Service', 'Terms of service have not been published yet.') },
+    { label: 'Report a problem', icon: 'support', action: Sentry.showFeedbackForm },
+    { label: 'Privacy Policy', icon: 'document', action: () => { void openLegalDocument('Privacy Policy'); } },
+    { label: 'Terms of Service', icon: 'document', action: () => { void openLegalDocument('Terms of Service'); } },
     { label: 'About', icon: 'info', detail: 'Version 1.0 (2026)', action: unavailable('Codexgram', 'Version 1.0 (2026)') },
   ];
   const group = (rows: Row[]) => <View style={[styles.card, { borderRadius: 14 * s }]}>{rows.map((row, index) => <Pressable key={row.label} accessibilityRole="button" accessibilityLabel={row.detail ? `${row.label}, ${row.detail}` : row.label} onPress={row.action} style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: Math.max(44, 40.5 * v), backgroundColor: pressed ? '#F0F5FF' : 'transparent' })}>
@@ -56,6 +60,7 @@ export function SettingsScreen({ onClose, onEdit, onSaved, onDelete, onSignOut, 
       {row.detail ? <Text style={{ color: '#7B89AD', fontSize: 13.5 * s, letterSpacing: -0.4 * s }}>{row.detail}</Text> : <FeedIcon name="chevron-right" size={14 * s} color="#7B89AD" />}
     </View>
   </Pressable>)}</View>;
+  if (showSentryTest) return <SentryTestScreen onClose={() => setShowSentryTest(false)} />;
   return <View style={[styles.screen, { paddingTop: insets.top }]}>
     <StatusBar style="dark" />
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 14 * s, paddingBottom: insets.bottom + 100 }}>
@@ -63,8 +68,18 @@ export function SettingsScreen({ onClose, onEdit, onSaved, onDelete, onSignOut, 
       <Text accessibilityRole="header" style={{ color: ink, fontSize: 34 * s, lineHeight: 43 * s, fontWeight: '700', letterSpacing: -1.2 * s, marginHorizontal: 8 * s, marginBottom: 11 * v }}>Settings</Text>
       <Text accessibilityRole="header" style={[styles.section, { fontSize: 16 * s, marginHorizontal: 8 * s, marginBottom: 9 * v }]}>Account</Text>
       {group(account)}
+      <Pressable accessibilityRole="button" accessibilityLabel="Share feedback" accessibilityHint="Opens a form to send feedback about Codexgram" onPress={Sentry.showFeedbackForm} style={({ pressed }) => [styles.feedbackCard, { marginTop: 18 * v, padding: 18 * s, gap: 14 * s, opacity: pressed ? 0.75 : 1 }]}>
+        <View style={styles.feedbackIcon}><FeedIcon name="comment" size={25} color="#007AFF" /></View>
+        <View style={{ flex: 1, gap: 5 }}>
+          <Text style={{ color: ink, fontSize: 17 * s, fontWeight: '700', letterSpacing: -0.4 }}>Help shape Codexgram</Text>
+          <Text style={{ color: '#526A90', fontSize: 13 * s, lineHeight: 19 * s }}>An idea, a little hiccup, or something you love? We’re listening.</Text>
+          <Text style={{ color: '#007AFF', fontSize: 14 * s, fontWeight: '600', marginTop: 5 }}>Share feedback →</Text>
+        </View>
+      </Pressable>
       <Text accessibilityRole="header" style={[styles.section, { fontSize: 16 * s, marginHorizontal: 8 * s, marginTop: 17 * v, marginBottom: 8 * v }]}>Support &amp; Legal</Text>
       {group(support)}
+      <Text accessibilityRole="header" style={[styles.section, { fontSize: 16 * s, marginHorizontal: 8 * s, marginTop: 17 * v, marginBottom: 8 * v }]}>Diagnostics</Text>
+      {group([{ label: 'Sentry test', icon: 'info', action: () => setShowSentryTest(true) }])}
       <Pressable accessibilityRole="button" disabled={signingOut || deleting} onPress={async () => {
         if (preview) { Alert.alert('Preview account', 'Sign out is available from your live profile.'); return; }
         setSigningOut(true); try { await onSignOut(); } catch { Alert.alert('Unable to sign out', 'Please try again.'); } finally { setSigningOut(false); }
@@ -78,4 +93,6 @@ const styles = StyleSheet.create({
   section: { color: ink, fontWeight: '600', letterSpacing: -0.45 },
   card: { borderWidth: StyleSheet.hairlineWidth, borderColor: '#E0E8F5', backgroundColor: '#FFFFFF80', overflow: 'hidden' },
   action: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+  feedbackCard: { flexDirection: 'row', alignItems: 'flex-start', backgroundColor: '#EDF4FF', borderWidth: StyleSheet.hairlineWidth, borderColor: '#D3E3FC', borderRadius: 20 },
+  feedbackIcon: { width: 46, height: 46, borderRadius: 15, backgroundColor: '#FFFFFF', alignItems: 'center', justifyContent: 'center' },
 });
