@@ -32,12 +32,13 @@ export function Avatar({ profile, size = 40 }: { profile: SocialProfile; size?: 
 }
 export function PostMedia({ post, visible = false, thumbnail = false, aspectRatio: requestedAspectRatio }: { post: SocialPost; visible?: boolean; thumbnail?: boolean; aspectRatio?: number }) {
   const { source, error, retry } = useMediaSource(post._id, 'post'); const [failed, setFailed] = useState(false);
-  const aspectRatio = requestedAspectRatio ?? (thumbnail ? 1 : Math.max(0.65, Math.min(1.8, post.width / post.height)));
+  const sourceAspectRatio = post.width > 0 && post.height > 0 ? post.width / post.height : 1;
+  const aspectRatio = requestedAspectRatio ?? (thumbnail ? 1 : Math.max(0.65, Math.min(1.8, sourceAspectRatio)));
   return <View style={{ width: '100%', aspectRatio, backgroundColor: '#EEF2F8', borderRadius: thumbnail ? 4 : 14, overflow: 'hidden', justifyContent: 'center' }}>
     {error || failed ? <Pressable onPress={() => { setFailed(false); retry(); }} style={{ padding: 12 }}><Text style={ui.muted}>Media unavailable. Tap to retry.</Text></Pressable>
       : !source ? <ActivityIndicator color="#087EFF" />
       : post.kind === 'video' ? <InlineVideo source={source} active={visible} thumbnail={thumbnail} onError={() => setFailed(true)} />
-      : <Image source={source} cachePolicy="none" style={{ width: '100%', height: '100%' }} contentFit="cover" onError={() => setFailed(true)} accessibilityLabel={post.caption || 'Post image'} />}
+      : <Image source={source} cachePolicy="none" style={{ width: '100%', height: '100%' }} contentFit={thumbnail ? "cover" : "contain"} onError={() => setFailed(true)} accessibilityLabel={post.caption || 'Post image'} />}
   </View>;
 }
 function InlineVideo({ source, active, thumbnail, onError }: { source: { uri: string; headers: Record<string, string> }; active: boolean; thumbnail: boolean; onError: () => void }) {
